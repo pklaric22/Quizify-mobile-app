@@ -20,7 +20,7 @@ Nakon vaše prijave bit će vam dodijeljen mentor s kojim ćete tijekom semestra
 Ime i prezime | E-mail adresa (FOI) | JMBAG | Github korisničko ime | Seminarska grupa
 ------------  | ------------------- | ----- | --------------------- | ----------------
 Andrej Pavešić |apavesic22@student.foi.hr | 0016158653 | apavesic22 | G02
-Ime i prezime | ... | ... | ... | ...
+Karlo Mišić | kmisic22@student.foi.hr | 0016158466 | kmisic22 | G01
 
 ## Opis domene
 Umjesto ovih uputa opišite domenu ili problem koji pokrivate vašim projektom. Domena može biti proizvoljna, ali obratite pozornost da sukladno ishodima učenja, domena omogući primjenu zahtijevanih koncepata kako je to navedeno u sljedećem poglavlju. Priložite odgovarajuće skice gdje je to prikladno.
