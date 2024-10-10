@@ -19,7 +19,7 @@ Nakon vaše prijave bit će vam dodijeljen mentor s kojim ćete tijekom semestra
 
 Ime i prezime | E-mail adresa (FOI) | JMBAG | Github korisničko ime | Seminarska grupa
 ------------  | ------------------- | ----- | --------------------- | ----------------
-Ime i prezime | mojaadresa@foi.hr | 000000000 | githubuser | G01
+Andrej Pavešić |apavesic22@student.foi.hr | 0016158653 | apavesic22 | G02
 Ime i prezime | ... | ... | ... | ...
 
 ## Opis domene
