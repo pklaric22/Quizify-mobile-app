@@ -1,21 +1,6 @@
-# Inicijalne upute za prijavu projekta iz Razvoja aplikacija za mobilne i pametne uređaje
-
-Poštovane kolegice i kolege, 
-
-čestitamo vam jer ste uspješno prijavili svoj projektni tim na kolegiju Razvoj aplikacija za mobilne i pametne uređaje, te je za vas automatski kreiran repozitorij koji ćete koristiti za verzioniranje vašega koda i za jednostavno dokumentiranje istoga.
-
-Ovaj dokument (README.md) predstavlja **osobnu iskaznicu vašeg projekta**. Vaš prvi zadatak je **prijaviti vlastiti projektni prijedlog** na način da ćete prijavu vašeg projekta, sukladno uputama danim u ovom tekstu, napisati upravo u ovaj dokument, umjesto ovoga teksta.
-
-Za upute o sintaksi koju možete koristiti u ovom dokumentu i kod pisanje vaše projektne dokumentacije pogledajte [ovaj link](https://guides.github.com/features/mastering-markdown/).
-Sav programski kod potrebno je verzionirati u glavnoj **master** grani i **obvezno** smjestiti u mapu Software. Sve artefakte (npr. slike) koje ćete koristiti u vašoj dokumentaciju obvezno verzionirati u posebnoj grani koja je već kreirana i koja se naziva **master-docs** i smjestiti u mapu Documentation.
-
-Nakon vaše prijave bit će vam dodijeljen mentor s kojim ćete tijekom semestra raditi na ovom projektu. Mentor će vam slati povratne informacije kroz sekciju Discussions također dostupnu na GitHubu vašeg projekta. A sada, vrijeme je da prijavite vaš projekt. Za prijavu vašeg projektnog prijedloga molimo vas koristite **predložak** koji je naveden u nastavku, a započnite tako da kliknete na *olovku* u desnom gornjem kutu ovoga dokumenta :) 
-
-# Naziv projekta
-(u redak iznad navedite kratki proizvoljni naziv projekta prikladan akademskoj zajednici, a ovaj tekst kao i uvodni tekst iznad obrišite)
+# Quizify
 
 ## Projektni tim
-(svi članovi tima moraju biti iz iste seminarske grupe)
 
 Ime i prezime | E-mail adresa (FOI) | JMBAG | Github korisničko ime | Seminarska grupa
 ------------  | ------------------- | ----- | --------------------- | ----------------
@@ -24,21 +9,26 @@ Karlo Mišić | kmisic22@student.foi.hr | 0016158466 | kmisic22 | G01
 Patrik Klarić | pklaric22@student.foi.hr | 0016158515 | pklaric22 | G01
 
 ## Opis domene
-Umjesto ovih uputa opišite domenu ili problem koji pokrivate vašim projektom. Domena može biti proizvoljna, ali obratite pozornost da sukladno ishodima učenja, domena omogući primjenu zahtijevanih koncepata kako je to navedeno u sljedećem poglavlju. Priložite odgovarajuće skice gdje je to prikladno.
-
+Quizify je aplikacija za ljubitelje kvizova, osmišljena da korisnicima pruži zabavno i izazovno iskustvo kroz raznovrsne trivije i testove znanja. Platforma pokriva širok spektar tema uključujući geografiju, književnost, povijest, glazbu, kulturu, jezike, znanost i brojne druge te omogućava korisnicima da testiraju svoje znanje, natječu se sa prijateljima ili sa globalnom zajednicom, i otkrivaju nove zanimljivosti. Quizify se ističe po tome što igrač može birati kategorije (osim ako želi "izmiješana" pitanja) na koje će odgovarati i podešavati težinu pitanja, a osim toga može dodati svoje poznanike i prijatelje kao i steći nova prijateljstva prilikom nadmetanja u znanju. Quizify prati napredak svakog igrača na način da igrač skuplja poene sa svojim točnim odgovorima koji se zapisuju u njegov osobni igrački profil. Osim što služi za zabavu Quizify pruža mogućnost stjecanja novih znanja i kvizaških iskustava, a može služiti i kao vrsta pripreme za puno ozbiljnije kvizove koji se odigravaju u stvarnom svijetu u obliku kvizaških liga i kupova. Također omogućava više načina igranja odnosno njegovi se igrači mogu natjecati u brzini davanja točnih odgovora u načinu igre koji je ograničen zadanim timerom ili se mogu natjecati u klasičnom načinu igre gdje se odgovara na zadani broj pitanja bez vremenskog ograničenja a uspješnost igrača ovisi o količini točnih odgovora.
 ## Specifikacija projekta
-Umjesto ovih uputa opišite zahtjeve za funkcionalnošću mobilne aplikacije ili aplikacije za pametne uređaje. Pobrojite osnovne funkcionalnosti i za svaku naznačite ime odgovornog člana tima. Opišite osnovnu buduću arhitekturu programskog proizvoda. Obratite pozornost da mobilne aplikacije često zahtijevaju pozadinske servise. Također uzmite u obzir da bi svaki član tima trebao biti odgovoran za otprilike 3 funkcionalnosti, te da bi opterećenje članova tima trebalo biti ujednačeno. Priložite odgovarajuće dijagrame i skice gdje je to prikladno. Funkcionalnosti sustava bobrojite u tablici ispod koristeći predložak koji slijedi:
 
 Oznaka | Naziv | Kratki opis | Odgovorni član tima
 ------ | ----- | ----------- | -------------------
-F01 | Login | Za pristup dnevniku potrebnba je autentikacija korisnika pomoću login funkcionalnosti. Korisnik se logira s podacima koji su mu dodijeljeni prilikom ... | Zlatko Stapić
-F02 | Pregled dnevnika | .... | ...
+F01 | Registracija | Quizify će korisnicima omogućiti registraciju sa svojim korisničkim podacima ukoliko im je to prvi put da koriste aplikaciju. | Andrej Pavešić
+F02 | Prijava | Aplikacija će omogućiti korisnicima ponovnu prijavu sa svojim podacima ako su se ranije registrirali. | Patrik Klarić
+F03 | Mogućnost igranja bez prijave ili registracije | Ukoliko korisnik ne želi davati svoje osobne osobne podatke aplikacija mu omogućava da igra kao gost. | Karlo Mišić
+F04 | Mogućnost biranja kategorije | Korisnik će imati mogućnost biranja kategorije pitanja na koje želi odgovarati. | Karlo Mišić
+F05 | Praćenje uspjeha igrača | Aplikacija će imati u sebi implementiran sistem bodovanja za svaki točan ili netočan odgovor koji će korisnik dati prilikom čega se njegov napredak sprema i pohranjuje u ljestvicu uspjeha sa drugim igračima. | Andrej Pavešić
+F06 | Više načina igre | Aplikacija nudi 2 načina igre te će igrači moći birati između toga hoće li igrati na klasičan način tako da dobiju 10 pitanja bez vremenskog ograničenja iz neke kategorije ili će igrati na način sa vremenskim ograničenjem gdje će imati neograničen broj pitanja koja će im se prikazivati unutar 1 minute. | Patrik Klarić
+F07 | Prikaz tablice uspješnosti | Unutar aplikacije postojat će mogućnost prikaza tablice sa poretkom igrača gdje su igrači poredani prema svojem bodovnom postignuću. Pritom će postojati dvije tablice, jedna gdje će se korisnik moći uspoređivati sa ostalim korisnicima koje je označio kao svoje prijatelje, a druga gdje će biti poredani top 10 igrača sa najvećim brojem bodova. | Andrej Pavešić
+F08 | Mogućnost označivanja drugih igrača kao "prijatelja" | Aplikacija mora imati mogućnost da svaki igrač može označiti prema korisničkom imenu drugog igrača kao prijatelja te se isto tako svaki zahtjev za prijateljstvom s druge strane može prihvatiti ili odbiti. | Patrik Klarić
+F09 | Prikaz uspjeha po kategoriji | Korisnik će unutar aplikacije imati prikaz svojeg uspjeha po svakoj kategoriji u aplikaciji. | Karlo Mišić
+F10 | Podešavanje težine | Korisnici mogu odabrati težinu pitanja (lako, srednje, teško) kako bi prilagodili izazov svom znanju. | Patrik Klarić 
+F11 | Uređivanje profila | Korisnici mogu ažurirati svoje osobne podatke, profilnu sliku i druge informacije u svom korisničkom profilu. | Andrej Pavešić
+F12 | Nagrade za postignuća | Aplikacija će imati sistem da se igračima dodjeljuju nagrade i priznanja za određena postignuća kao što su primjerice prvih 10 točno odgovorenih pitanja | Karlo Mišić
 
 ## Tehnologije i oprema
 Umjesto ovih uputa jasno popišite sve tehnologije, alate i opremu koju ćete koristiti pri implementaciji vašeg rješenja. Vaše rješenje može biti implementirano u bilo kojoj tehnologiji za razvoj mobilnih aplikacija ili aplikacija za pametne uređaje osim u hibridnim web tehnologijama kao što su React Native ili HTML+CSS+JS. Tehnologije koje ćete koristiti bi trebale biti javno dostupne, a ako ih ne budemo obrađivali na vježbama u vašoj dokumentaciji ćete morati navesti način preuzimanja, instaliranja i korištenja onih tehnologija koje su neopbodne kako bi se vaš programski proizvod preveo i pokrenuo. Pazite da svi alati koje ćete koristiti moraju imati odgovarajuću licencu. Što se tiče zahtjeva nastavnika, obvezno je koristiti git i GitHub za verzioniranje programskog koda, GitHub Wiki za pisanje jednostavne dokumentacije sukladno uputama mentora, a projektne zadatke je potrebno planirati i pratiti u alatu GitHub projects.
 
 ## Baza podataka i web server
-Nastavnici vam mogu pripremiti MySQL bazu podataka i web server na kojem možete postaviti jednostavne web servise. Ako želite da vam pripremimo ove sustave obavezno to navedite umjesto ovog teksta s napomenom "Tražimo pristup serveru na kojemu ćemo moći imati bazu podataka". Alternativno, možete koristiti bilo koji online dostupan sustav kao i studentske licence na pojedinim platformama kao što su Heroku ili Azure. Međutim, budite spremni da vas nastavnici navedu na to da lokalno stvorite okruženje na kojemu se server pokreće i da se aplikacija na istoj mreži spaja na server.
-
-## .gitignore
-Uzmite u obzir da je u mapi Software .gitignore konfiguriran za nekoliko tehnologija, ali samo ako će projekti biti smješteni direktno u mapu Software ali ne i u neku pod mapu. Nakon odabira konačne tehnologije i projekta obavezno dopunite/premjestite gitignore kako bi vaš projekt zadovoljavao kriterije koji su opisani u ReadMe.md dokumentu dostupnom u mapi Software.
+Tražimo pristup serveru na kojemu ćemo imati bazu podataka.
