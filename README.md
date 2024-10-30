@@ -14,14 +14,14 @@ Quizify je aplikacija za ljubitelje kvizova, osmišljena da korisnicima pruži z
 
 Oznaka | Naziv | Kratki opis | Odgovorni član tima
 ------ | ----- | ----------- | -------------------
-F01 | Registracija i prijava | Quizify će korisnicima omogućiti registraciju sa svojim korisničkim podacima ako im je to prvi put da koriste aplikaciju odnosno moći će se prijaviti ako su već ranije koristili aplikaciju | Andrej Pavešić
+F01 | Registracija i prijava | Quizify će korisnicima omogućiti registraciju sa svojim korisničkim podacima ako im je to prvi put da koriste aplikaciju odnosno moći će se prijaviti ako su već ranije koristili aplikaciju. | Andrej Pavešić
 F02 | Mogućnost ručnog unosa pitanja u bazu | Korisnik će imati mogućnost dodavanja pitanja po vlastitom izboru za željenu kategoriju. | Karlo Mišić
 F03 | Kreiranje kviza | Quizify će imati mogućnost kreiranja kviza tako da ga kreira prema kategorijama pitanja, načinu igre i težini. Moći će kreirati kviz prema nasumično odabranim kategorijama ili kategorijama koje korisnik odabere prema svojim željama i isto tako će ih moći kreirati prema težini (lako, srednje, teško). | Patrik Klarić
 F04 | Praćenje uspjeha igrača | Aplikacija će imati u sebi implementiran sistem bodovanja za svaki točan ili netočan odgovor koji će korisnik dati prilikom čega se njegov napredak sprema i pohranjuje u ljestvicu uspjeha s drugim igračima. | Andrej Pavešić
 F05 | Prikaz tablice uspješnosti | Unutar aplikacije postojat će mogućnost prikaza tablice s poretkom igrača gdje su igrači poredani prema svojem bodovnom postignuću. Pritom će postojati dvije tablice, jedna gdje će se korisnik moći uspoređivati s ostalim korisnicima koje je označio kao svoje prijatelje, a druga gdje će biti poredani top 10 igrača s najvećim brojem bodova. | Andrej Pavešić
 F06 | Prikaz uspjeha po kategoriji | Korisnik će unutar aplikacije imati prikaz svojeg uspjeha po svakoj kategoriji u aplikaciji. Uz dodatne informacije o pitanju koje je najčešće odgovarano i koliki je postotak igrača odgovorilo na to pitanje točno, prikaz će biti u grafičkom obliku. | Karlo Mišić
 F07 | Sudjelovanje u kvizu | Korisnici sudjeluju u kvizu tako što se prijave pa pokrenu novu igru i odaberu način, kategoriju i težinu pitanja. | Patrik Klarić 
-F08 | Nagrade za postignuća | Aplikacija će imati sistem da se igračima dodjeljuju nagrade i priznanja za određena postignuća kao što su primjerice prvih 10 točno odgovorenih pitanja | Patrik Klarić
+F08 | Nagrade za postignuća | Aplikacija će imati sistem da se igračima dodjeljuju nagrade i priznanja za određena postignuća kao što su primjerice prvih 10 točno odgovorenih pitanja. | Patrik Klarić
 F09 | Kreiranje baze pitanja | Quizify će svoju bazu pitanja povlačiti iz API-ja s linka https://opentdb.com/api.php?amount=10 te će ih koristiti u kreiranju kviza i pitanja za kviz. | Karlo Mišić
 
 ## Tehnologije i oprema
