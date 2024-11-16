@@ -1,13 +1,12 @@
 package com.example.quizifyrampu
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.quizifyrampu.QuizActivity
-import com.example.quizifyrampu.TimeRushActivity
-import com.example.quizifyrampu.R
+
 
 class DifficultySelectionActivity : AppCompatActivity() {
 
@@ -21,6 +20,7 @@ class DifficultySelectionActivity : AppCompatActivity() {
     private var selectedGameMode: String? = null
     private var category: String? = null
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_difficulty_selection)
