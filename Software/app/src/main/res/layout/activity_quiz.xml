@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#4B0082"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: 0"
+        android:textColor="#FFFF00"
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:id="@+id/tv_question_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Question 1/10"
+        android:textColor="#FFFF00"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp" />
+
+
+    <TextView
+        android:id="@+id/tv_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Question will appear here"
+        android:textColor="#FFFF00"
+        android:textSize="24sp"
+        android:layout_marginBottom="20dp" />
+
+    <Button
+        android:id="@+id/btn_answer1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer 1"
+        android:layout_margin="8dp" />
+
+    <Button
+        android:id="@+id/btn_answer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer 2"
+        android:layout_margin="8dp" />
+
+    <Button
+        android:id="@+id/btn_answer3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer 3"
+        android:layout_margin="8dp" />
+
+    <Button
+        android:id="@+id/btn_answer4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer 4"
+        android:layout_margin="8dp" />
+
+</LinearLayout>

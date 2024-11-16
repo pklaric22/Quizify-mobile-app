@@ -35,6 +35,4 @@
             android:text="Time rush" />
 
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

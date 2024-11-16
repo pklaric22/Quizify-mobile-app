@@ -23,6 +23,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+
+        <activity android:name=".GameModeActivity" />
+
+        <activity android:name=".CategorySelectionActivity" />
+
+        <activity android:name=".DifficultySelectionActivity" />
+
+        <activity android:name=".QuizActivity" />
+
+        <activity android:name=".TimeRushActivity"></activity>
+
+        <activity android:name=".RegisterActivity"></activity>
+
+        <activity android:name=".LoginActivity"></activity>
+
+</application>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>
