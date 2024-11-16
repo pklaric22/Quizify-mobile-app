@@ -1,13 +1,10 @@
-package com.example.quizifyrampu
+package com.example.quizify
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.quizifyrampu.GameModeActivity
-import com.example.quizifyrampu.LoginActivity
+import android.widget.Button
 import com.example.quizifyrampu.R
-import com.example.quizifyrampu.RegisterActivity
 
 class MainActivity : AppCompatActivity() {
 

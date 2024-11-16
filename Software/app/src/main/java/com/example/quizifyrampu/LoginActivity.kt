@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.quizifyrampu.GameModeActivity
+import com.example.quizify.GameModeActivity
 
 class LoginActivity : AppCompatActivity() {
 
