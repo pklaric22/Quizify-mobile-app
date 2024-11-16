@@ -1,47 +1,34 @@
-package com.example.quizifyrampu
+package com.example.quizify
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.quizifyrampu.ui.theme.QuizifyRAMPUTheme
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import com.example.quizifyrampu.R
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            QuizifyRAMPUTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        val playAsGuestButton: Button = findViewById(R.id.btn_play_as_guest)
+        val registerButton: Button = findViewById(R.id.btn_register)
+        val loginButton: Button = findViewById(R.id.btn_login)
+
+        playAsGuestButton.setOnClickListener {
+            val intent = Intent(this, GameModeActivity::class.java)
+            startActivity(intent)
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Helloooooooooo123! $name!",
-        modifier = modifier
-    )
-}
+        registerButton.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    QuizifyRAMPUTheme {
-        Greeting("Android")
+        loginButton.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
