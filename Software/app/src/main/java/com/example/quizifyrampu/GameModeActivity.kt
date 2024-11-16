@@ -1,9 +1,10 @@
-package com.example.quizify
+package com.example.quizifyrampu
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.quizifyrampu.CategorySelectionActivity
 import com.example.quizifyrampu.R
 
 class GameModeActivity : AppCompatActivity() {
