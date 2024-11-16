@@ -1,6 +1,5 @@
 package com.example.quizifyrampu
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -10,6 +9,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.quizifyrampu.QuizActivity
+import com.example.quizifyrampu.R
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -141,7 +142,6 @@ class TimeRushActivity : AppCompatActivity() {
         updateQuestionCounterView()
     }
 
-    @SuppressLint("SetTextI18n")
     private fun resetTimer() {
         if (::countDownTimer.isInitialized) {
             countDownTimer.cancel()
@@ -211,12 +211,10 @@ class TimeRushActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun updateScoreView() {
         tvScore.text = "Bodovi: $score"
     }
 
-    @SuppressLint("SetTextI18n")
     private fun updateQuestionCounterView() {
         tvQuestionCounter.text = "Pitanje ${currentQuestionIndex + 1}/$totalQuestions"
     }
