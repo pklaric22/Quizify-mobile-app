@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.quizify.GameModeActivity
+import com.example.quizifyrampu.GameModeActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -62,5 +62,4 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Neispravno korisničko ime ili lozinka", Toast.LENGTH_SHORT).show()
         }
     }
-
 }

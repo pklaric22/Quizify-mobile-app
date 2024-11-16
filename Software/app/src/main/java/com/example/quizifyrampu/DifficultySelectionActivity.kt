@@ -1,10 +1,12 @@
-package com.example.quizify
+package com.example.quizifyrampu
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.quizifyrampu.QuizActivity
+import com.example.quizifyrampu.TimeRushActivity
 import com.example.quizifyrampu.R
 
 class DifficultySelectionActivity : AppCompatActivity() {
