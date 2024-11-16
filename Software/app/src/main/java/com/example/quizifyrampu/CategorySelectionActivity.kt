@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.quizifyrampu.DifficultySelectionActivity
+import com.example.quizifyrampu.R
 
 class CategorySelectionActivity : AppCompatActivity() {
 
