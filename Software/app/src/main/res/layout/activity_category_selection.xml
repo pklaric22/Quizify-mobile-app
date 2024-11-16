@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#4B0082"
+        android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_category_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Odabir kategorije"
+        android:textSize="30sp"
+        android:textColor="#FFFF00"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_all_categories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Odabir svih kategorija"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="20dp"
+        android:padding="12dp" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="5"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:id="@+id/button_movies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filmovi"
+            android:layout_margin="8dp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/button_games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Igrice"
+            android:layout_margin="8dp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/button_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Povijest"
+            android:layout_margin="8dp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/button_geography"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Geografija"
+            android:layout_margin="8dp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/button_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Glazba"
+            android:layout_margin="8dp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/button_physics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fizika"
+            android:layout_margin="8dp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/button_biology"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Biologija"
+            android:layout_margin="8dp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/button_cars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Auti"
+            android:layout_margin="8dp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/button_sport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sport"
+            android:layout_margin="8dp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/button_it"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IT"
+            android:layout_margin="8dp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp" />
+
+    </GridLayout>
+
+</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
