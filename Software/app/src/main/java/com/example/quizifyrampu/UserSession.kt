@@ -1,8 +1,8 @@
 package com.example.quizifyrampu
 
 object UserSession {
-    var firstName: String? = null
-    var lastName: String? = null
+    private var firstName: String? = null
+    private var lastName: String? = null
     var username: String? = null
     var password: String? = null
 
