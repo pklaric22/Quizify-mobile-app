@@ -1,19 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#4B0082"
     android:gravity="center"
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/tv_app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QUIZIFY"
+        android:textSize="80sp"
+        android:fontFamily="sans-serif-black"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="90dp" />
+
+    <TextView
         android:id="@+id/tv_difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Odabir težine pitanja"
-        android:textColor="#FFFF00"
+        android:text="Select Question Difficulty"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-black"
         android:layout_marginBottom="20dp" />
 
     <TextView
@@ -21,40 +34,98 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:fontFamily="sans-serif"
+        android:layout_marginBottom="8dp" />
 
     <TextView
         android:id="@+id/tvSelectedCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:fontFamily="sans-serif"
+        android:layout_marginBottom="24dp" />
 
     <Button
         android:id="@+id/btn_easy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Lako"
-        android:layout_margin="8dp" />
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:text="Easy"
+        android:layout_margin="8dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btn_medium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Srednje"
-        android:layout_margin="8dp" />
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:text="Medium"
+        android:layout_margin="8dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btn_hard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Teško"
-        android:layout_margin="8dp" />
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:text="Hard"
+        android:layout_margin="8dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btn_random"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:text="Random"
+        android:layout_margin="8dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="16sp" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nasumično"
-        android:layout_margin="8dp" />
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/btn_play"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_play"
+            android:layout_marginRight="80dp"/>
+
+        <ImageView
+            android:id="@+id/btn_leaderboard"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_leaderboard"
+            android:layout_marginRight="80dp"/>
+
+        <ImageView
+            android:id="@+id/btn_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_profile" />
+    </LinearLayout>
 </LinearLayout>

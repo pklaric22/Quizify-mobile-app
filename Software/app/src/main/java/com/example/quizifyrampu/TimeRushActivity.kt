@@ -1,5 +1,6 @@
 package com.example.quizifyrampu
 
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
@@ -24,6 +26,7 @@ class TimeRushActivity : AppCompatActivity() {
     private lateinit var btnAnswer2: Button
     private lateinit var btnAnswer3: Button
     private lateinit var btnAnswer4: Button
+    private lateinit var progressTimer: ProgressBar
 
     private val client = OkHttpClient()
     private var questions: List<QuizActivity.Question> = emptyList()
@@ -45,6 +48,7 @@ class TimeRushActivity : AppCompatActivity() {
         btnAnswer2 = findViewById(R.id.btn_answer2)
         btnAnswer3 = findViewById(R.id.btn_answer3)
         btnAnswer4 = findViewById(R.id.btn_answer4)
+        progressTimer = findViewById(R.id.progress_timer)
 
         val category = intent.getStringExtra("category") ?: "9"
         val difficulty = intent.getStringExtra("difficulty") ?: "easy"
@@ -148,20 +152,22 @@ class TimeRushActivity : AppCompatActivity() {
         }
 
         timeLeftInMillis = 10000
-        tvTimer.text = "Vrijeme: 10"
+        tvTimer.text = "10"
+        progressTimer.progress = 1000
 
-        countDownTimer = object : CountDownTimer(timeLeftInMillis, 1000) {
+        countDownTimer = object : CountDownTimer(timeLeftInMillis, 100) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeftInMillis = millisUntilFinished
-                val seconds = (timeLeftInMillis / 1000).toInt()
-                tvTimer.text = "Vrijeme: $seconds"
+                val seconds = (millisUntilFinished / 1000).toInt()
+                tvTimer.text = "$seconds"
+                val progress = (millisUntilFinished.toFloat() / 10000 * 1000).toInt()
+                progressTimer.progress = progress
             }
 
             override fun onFinish() {
-                tvTimer.text = "Vrijeme isteklo!"
+                tvTimer.text = "Time's up!"
+                progressTimer.progress = 0
                 setButtonsEnabled(false)
-                highlightCorrectAnswer(questions[currentQuestionIndex].correctAnswer)
-
                 Handler(Looper.getMainLooper()).postDelayed({
                     goToGameMode()
                 }, 1000)
@@ -230,27 +236,27 @@ class TimeRushActivity : AppCompatActivity() {
 
     private fun highlightCorrectAnswer(answer: String) {
         when (answer) {
-            btnAnswer1.text -> btnAnswer1.setBackgroundColor(getColor(android.R.color.holo_green_light))
-            btnAnswer2.text -> btnAnswer2.setBackgroundColor(getColor(android.R.color.holo_green_light))
-            btnAnswer3.text -> btnAnswer3.setBackgroundColor(getColor(android.R.color.holo_green_light))
-            btnAnswer4.text -> btnAnswer4.setBackgroundColor(getColor(android.R.color.holo_green_light))
+            btnAnswer1.text -> btnAnswer1.setBackgroundResource(R.drawable.answer_correct)
+            btnAnswer2.text -> btnAnswer2.setBackgroundResource(R.drawable.answer_correct)
+            btnAnswer3.text -> btnAnswer3.setBackgroundResource(R.drawable.answer_correct)
+            btnAnswer4.text -> btnAnswer4.setBackgroundResource(R.drawable.answer_correct)
         }
     }
 
     private fun highlightIncorrectAnswer(answer: String) {
         when (answer) {
-            btnAnswer1.text -> btnAnswer1.setBackgroundColor(getColor(android.R.color.holo_red_light))
-            btnAnswer2.text -> btnAnswer2.setBackgroundColor(getColor(android.R.color.holo_red_light))
-            btnAnswer3.text -> btnAnswer3.setBackgroundColor(getColor(android.R.color.holo_red_light))
-            btnAnswer4.text -> btnAnswer4.setBackgroundColor(getColor(android.R.color.holo_red_light))
+            btnAnswer1.text -> btnAnswer1.setBackgroundResource(R.drawable.answer_incorrect)
+            btnAnswer2.text -> btnAnswer2.setBackgroundResource(R.drawable.answer_incorrect)
+            btnAnswer3.text -> btnAnswer3.setBackgroundResource(R.drawable.answer_incorrect)
+            btnAnswer4.text -> btnAnswer4.setBackgroundResource(R.drawable.answer_incorrect)
         }
     }
 
     private fun resetButtonColors() {
-        btnAnswer1.setBackgroundColor(getColor(android.R.color.darker_gray))
-        btnAnswer2.setBackgroundColor(getColor(android.R.color.darker_gray))
-        btnAnswer3.setBackgroundColor(getColor(android.R.color.darker_gray))
-        btnAnswer4.setBackgroundColor(getColor(android.R.color.darker_gray))
+        btnAnswer1.setBackgroundResource(R.drawable.button_with_border)
+        btnAnswer2.setBackgroundResource(R.drawable.button_with_border)
+        btnAnswer3.setBackgroundResource(R.drawable.button_with_border)
+        btnAnswer4.setBackgroundResource(R.drawable.button_with_border)
     }
 
     private fun goToGameMode() {

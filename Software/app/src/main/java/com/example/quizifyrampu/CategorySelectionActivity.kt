@@ -1,8 +1,12 @@
 package com.example.quizifyrampu
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class CategorySelectionActivity : AppCompatActivity() {
@@ -50,6 +54,20 @@ class CategorySelectionActivity : AppCompatActivity() {
         btnCars.setOnClickListener { startDifficultySelection("Cars") }
         btnSport.setOnClickListener { startDifficultySelection("Sport") }
         btnIT.setOnClickListener { startDifficultySelection("IT") }
+
+        val textView = findViewById<TextView>(R.id.tv_app_title)
+        val shader = LinearGradient(
+            0f, 0f, 0f, textView.textSize * 1.5f,
+            intArrayOf(
+                Color.parseColor("#00FFFF"),
+                Color.parseColor("#4B0082"),
+                Color.parseColor("#FFFF00")
+            ),
+            null,
+            Shader.TileMode.CLAMP
+        )
+        textView.paint.shader = shader
+        textView.setShadowLayer(8f, 4f, 4f, Color.YELLOW)
     }
 
     private fun startDifficultySelection(category: String) {

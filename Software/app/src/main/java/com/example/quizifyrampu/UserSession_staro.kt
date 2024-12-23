@@ -1,6 +1,6 @@
 package com.example.quizifyrampu
 
-object UserSession {
+object UserSession_staro {
     private var firstName: String? = null
     private var lastName: String? = null
     var username: String? = null

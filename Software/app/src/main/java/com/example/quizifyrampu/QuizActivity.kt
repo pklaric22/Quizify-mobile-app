@@ -1,15 +1,21 @@
 package com.example.quizifyrampu
-
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
 
@@ -27,7 +33,9 @@ class QuizActivity : AppCompatActivity() {
     private var questions: List<Question> = emptyList()
     private var currentQuestionIndex = 0
     private var score = 0
+    private var correctAnswers = 0
     private val totalQuestions = 10
+    private var firstQuestion: String = "N/A"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,16 +49,32 @@ class QuizActivity : AppCompatActivity() {
         btnAnswer3 = findViewById(R.id.btn_answer3)
         btnAnswer4 = findViewById(R.id.btn_answer4)
 
-        val category = intent.getStringExtra("category") ?: "9"
+        val tvCategory = findViewById<TextView>(R.id.tv_category)
+        val category = intent.getStringExtra("category") ?: "General Knowledge"
+        tvCategory.text = category
+
         val difficulty = intent.getStringExtra("difficulty") ?: "easy"
-        val gameMode = intent.getStringExtra("gameMode") ?: "normal"
-        Log.d("QuizActivity", "Game Mode: $gameMode, Category: $category, Difficulty: $difficulty")
+        Log.d("QuizActivity", "Category: $category, Difficulty: $difficulty")
 
         fetchQuestions(category, difficulty)
         setButtonClickListeners()
 
         updateScoreView()
         updateQuestionCounterView()
+
+        val textView = findViewById<TextView>(R.id.tv_app_title)
+        val shader = LinearGradient(
+            0f, 0f, 0f, textView.textSize * 1.5f,
+            intArrayOf(
+                Color.parseColor("#00FFFF"),
+                Color.parseColor("#4B0082"),
+                Color.parseColor("#FFFF00")
+            ),
+            null,
+            Shader.TileMode.CLAMP
+        )
+        textView.paint.shader = shader
+        textView.setShadowLayer(8f, 4f, 4f, Color.YELLOW)
     }
 
     private fun setButtonClickListeners() {
@@ -61,6 +85,81 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun fetchQuestions(category: String, difficulty: String) {
+        val combinedQuestions = mutableListOf<Question>()
+        val serverUrl = "http://157.230.8.219/quizify/get_questions.php?category=$category&difficulty=$difficulty"
+
+        val credentials = Credentials.basic("aplikatori", "nA7:B&")
+        val serverRequest = Request.Builder()
+            .url(serverUrl)
+            .addHeader("Authorization", credentials)
+            .build()
+
+        client.newCall(serverRequest).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("QuizActivity", "Error fetching questions from API", e)
+                runOnUiThread { showErrorToast("Neuspjelo dohvaćanje pitanja sa servera") }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                try {
+                    val responseString = response.body?.string() ?: ""
+                    Log.d("QuizActivity", "Server response: $responseString")
+
+                    if (!response.isSuccessful) {
+                        runOnUiThread { showErrorToast("Greška: ${response.code}") }
+                        return
+                    }
+
+                    val json = JSONObject(responseString)
+                    val results = json.getJSONArray("questions")
+
+                    for (i in 0 until results.length()) {
+                        val questionObj = results.getJSONObject(i)
+                        val question = questionObj.optString("text", "")
+                        val correctAnswer = questionObj.optString("correct_answer", "")
+                        val answers = mutableListOf(
+                            correctAnswer,
+                            questionObj.optString("incorrect_answer1", ""),
+                            questionObj.optString("incorrect_answer2", ""),
+                            questionObj.optString("incorrect_answer3", "")
+                        ).filter { it.isNotEmpty() }.shuffled()
+
+                        if (question.isNotEmpty() && correctAnswer.isNotEmpty()) {
+                            combinedQuestions.add(Question(question, correctAnswer, answers))
+                        }
+                    }
+
+                    val questionsFromDatabase = combinedQuestions.size
+                    val remainingQuestions = totalQuestions - questionsFromDatabase
+
+                    if (remainingQuestions > 0) {
+                        loadOpenTdbQuestions(category, difficulty, remainingQuestions, combinedQuestions)
+                    } else {
+                        runOnUiThread {
+                            questions = combinedQuestions
+                            currentQuestionIndex = 0
+                            updateUI(questions[currentQuestionIndex])
+                        }
+                    }
+
+                } catch (e: Exception) {
+                    Log.e("QuizActivity", "Error parsing server questions", e)
+                    runOnUiThread { showErrorToast("Greška pri obradi podataka sa servera") }
+                }
+            }
+        })
+    }
+
+    private fun showErrorToast(message: String) {
+        Toast.makeText(this@QuizActivity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun loadOpenTdbQuestions(
+        category: String,
+        difficulty: String,
+        remainingQuestions: Int,
+        combinedQuestions: MutableList<Question>
+    ) {
         val categoryId = when (category) {
             "Movies" -> "11"
             "Games" -> "15"
@@ -73,29 +172,21 @@ class QuizActivity : AppCompatActivity() {
             "Sports" -> "21"
             "IT" -> "18"
             "Cars" -> "28"
-            "All Categories" -> "9"
             else -> "9"
         }
+        val openTdbUrl = "https://opentdb.com/api.php?amount=$remainingQuestions&category=$categoryId&difficulty=$difficulty&type=multiple"
+        val openTdbRequest = Request.Builder().url(openTdbUrl).build()
 
-        val url = "https://opentdb.com/api.php?amount=10&category=$categoryId&difficulty=$difficulty&type=multiple"
-        Log.d("QuizActivity", "Dohvaćanje pitanja sa linka: $url")
-
-        val request = Request.Builder().url(url).build()
-        client.newCall(request).enqueue(object : Callback {
+        client.newCall(openTdbRequest).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.e("QuizActivity", "Neuspjelo dohvaćanje pitanja", e)
+                Log.e("QuizActivity", "Error fetching questions from OpenTDB", e)
+                runOnUiThread { showErrorToast("Greška pri dohvaćanju pitanja s OpenTDB") }
             }
 
             override fun onResponse(call: Call, response: Response) {
-                if (!response.isSuccessful) {
-                    Log.e("QuizActivity", "Odgovor neuspješan: ${response.code}")
-                    return
-                }
-
                 response.body?.let { responseBody ->
                     val json = JSONObject(responseBody.string())
                     val results = json.getJSONArray("results")
-                    val questionList = mutableListOf<Question>()
 
                     for (i in 0 until results.length()) {
                         val questionObj = results.getJSONObject(i)
@@ -109,27 +200,21 @@ class QuizActivity : AppCompatActivity() {
                         }
                         answers.shuffle()
 
-                        questionList.add(Question(question, correctAnswer, answers))
+                        combinedQuestions.add(Question(question, correctAnswer, answers))
                     }
-
-                    questions = questionList
-                    currentQuestionIndex = 0
-
-                    Log.d("QuizActivity", "Pitanje dohvaćeno: ${questions.size}")
 
                     runOnUiThread {
-                        if (questions.isNotEmpty()) {
-                            updateUI(questions[currentQuestionIndex])
-                        } else {
-                            Log.e("QuizActivity", "Pitanja nisu dohvaćena!")
-                        }
+                        questions = combinedQuestions
+                        currentQuestionIndex = 0
+                        updateUI(questions[currentQuestionIndex])
                     }
-                } ?: Log.e("QuizActivity", "Odgovor u body je prazan")
+                }
             }
         })
     }
 
     private fun updateUI(question: Question) {
+        if (firstQuestion == "N/A") firstQuestion = question.text
         tvQuestion.text = question.text
         btnAnswer1.text = question.answers[0]
         btnAnswer2.text = question.answers[1]
@@ -140,24 +225,31 @@ class QuizActivity : AppCompatActivity() {
 
     private fun checkAnswer(selectedAnswer: String) {
         setButtonsEnabled(false)
-        resetButtonColors()
 
         val correctAnswer = questions[currentQuestionIndex].correctAnswer
-        val difficulty = intent.getStringExtra("difficulty") ?: "easy"
 
-        if (selectedAnswer == correctAnswer) {
-            Log.d("QuizActivity", "Točan odgovor: $selectedAnswer")
-            highlightCorrectAnswer(selectedAnswer)
-            score += getScoreForDifficulty(difficulty)
-            updateScoreView()
+        when (correctAnswer) {
+            btnAnswer1.text -> btnAnswer1.setBackgroundResource(R.drawable.answer_correct)
+            btnAnswer2.text -> btnAnswer2.setBackgroundResource(R.drawable.answer_correct)
+            btnAnswer3.text -> btnAnswer3.setBackgroundResource(R.drawable.answer_correct)
+            btnAnswer4.text -> btnAnswer4.setBackgroundResource(R.drawable.answer_correct)
+        }
+
+        if (selectedAnswer != correctAnswer) {
+            when (selectedAnswer) {
+                btnAnswer1.text -> btnAnswer1.setBackgroundResource(R.drawable.answer_incorrect)
+                btnAnswer2.text -> btnAnswer2.setBackgroundResource(R.drawable.answer_incorrect)
+                btnAnswer3.text -> btnAnswer3.setBackgroundResource(R.drawable.answer_incorrect)
+                btnAnswer4.text -> btnAnswer4.setBackgroundResource(R.drawable.answer_incorrect)
+            }
         } else {
-            Log.d("QuizActivity", "Netočan odgovor: $selectedAnswer")
-            highlightIncorrectAnswer(selectedAnswer)
+            score += getScoreForDifficulty(intent.getStringExtra("difficulty") ?: "easy")
+            correctAnswers++
+            updateScoreView()
         }
 
         Handler(Looper.getMainLooper()).postDelayed({
             resetButtonColors()
-
             if (currentQuestionIndex < questions.size - 1) {
                 currentQuestionIndex++
                 updateUI(questions[currentQuestionIndex])
@@ -184,30 +276,11 @@ class QuizActivity : AppCompatActivity() {
         btnAnswer4.isEnabled = enabled
     }
 
-    private fun highlightCorrectAnswer(answer: String) {
-        when (answer) {
-            btnAnswer1.text -> btnAnswer1.setBackgroundColor(getColor(android.R.color.holo_green_light))
-            btnAnswer2.text -> btnAnswer2.setBackgroundColor(getColor(android.R.color.holo_green_light))
-            btnAnswer3.text -> btnAnswer3.setBackgroundColor(getColor(android.R.color.holo_green_light))
-            btnAnswer4.text -> btnAnswer4.setBackgroundColor(getColor(android.R.color.holo_green_light))
-        }
-    }
-
-    private fun highlightIncorrectAnswer(answer: String) {
-        when (answer) {
-            btnAnswer1.text -> btnAnswer1.setBackgroundColor(getColor(android.R.color.holo_red_light))
-            btnAnswer2.text -> btnAnswer2.setBackgroundColor(getColor(android.R.color.holo_red_light))
-            btnAnswer3.text -> btnAnswer3.setBackgroundColor(getColor(android.R.color.holo_red_light))
-            btnAnswer4.text -> btnAnswer4.setBackgroundColor(getColor(android.R.color.holo_red_light))
-        }
-        highlightCorrectAnswer(questions[currentQuestionIndex].correctAnswer)
-    }
-
     private fun resetButtonColors() {
-        btnAnswer1.setBackgroundColor(getColor(android.R.color.darker_gray))
-        btnAnswer2.setBackgroundColor(getColor(android.R.color.darker_gray))
-        btnAnswer3.setBackgroundColor(getColor(android.R.color.darker_gray))
-        btnAnswer4.setBackgroundColor(getColor(android.R.color.darker_gray))
+        btnAnswer1.setBackgroundResource(R.drawable.button_with_border)
+        btnAnswer2.setBackgroundResource(R.drawable.button_with_border)
+        btnAnswer3.setBackgroundResource(R.drawable.button_with_border)
+        btnAnswer4.setBackgroundResource(R.drawable.button_with_border)
     }
 
     private fun decodeHtml(html: String): String {
@@ -311,16 +384,58 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun finishQuiz() {
-        Log.d("QuizActivity", "Kviz završen. Finalni bodovi: $score")
+        val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val userId = sharedPreferences.getInt("user_id", -1)
+        Log.d("QuizActivity", "User ID: $userId")
+
+        if (userId == -1) {
+            Toast.makeText(this, "You are not logged in. Results will not be saved.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, GameModeActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+
+        val category = intent.getStringExtra("category") ?: "General Knowledge"
+        submitResults(userId, category, correctAnswers, totalQuestions, firstQuestion)
+
         val intent = Intent(this, GameModeActivity::class.java)
-        intent.putExtra("finalScore", score)
         startActivity(intent)
         finish()
     }
 
-    data class Question(
-        val text: String,
-        val correctAnswer: String,
-        val answers: List<String>
-    )
+    private fun submitResults(
+        userId: Int, category: String, correctAnswers: Int,
+        totalQuestions: Int, mostAnsweredQuestion: String
+    ) {
+        val json = JSONObject().apply {
+            put("user_id", userId)
+            put("category", category)
+            put("correct_answers", correctAnswers)
+            put("total_questions", totalQuestions)
+            put("most_answered_question", mostAnsweredQuestion)
+        }
+
+        val mediaType = "application/json; charset=utf-8".toMediaType()
+        val body = json.toString().toRequestBody(mediaType)
+        val credentials = Credentials.basic("aplikatori", "nA7:B&")
+
+        val request = Request.Builder()
+            .url("http://157.230.8.219/quizify/submit_quiz.php")
+            .addHeader("Authorization", credentials)
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("QuizActivity", "Greška pri slanju rezultata: ${e.message}")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                Log.d("QuizActivity", "Rezultati poslani: ${response.body?.string()}")
+            }
+        })
+    }
+
+    data class Question(val text: String, val correctAnswer: String, val answers: List<String>)
 }

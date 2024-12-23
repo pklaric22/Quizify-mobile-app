@@ -1,47 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#4B0082">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="#4B0082">
+        android:padding="16dp">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/tv_app_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quizify"
-            android:textSize="30sp"
-            android:textColor="#FFFF00"
-            android:layout_marginBottom="20dp" />
+            android:text="QUIZIFY"
+            android:textSize="80sp"
+            android:fontFamily="sans-serif-black"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="32dp"
+            android:textColor="#FFFFFF"
+            />
+
+        <TextView
+            android:id="@+id/tv_sign_in_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in now"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/et_username_login"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Korisnicko ime"
+            android:background="@drawable/rounded_edittext"
+            android:padding="14dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_password_login"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Lozinka"
+            android:background="@drawable/rounded_edittext"
+            android:padding="14dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
+            android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/btn_play_as_guest"
+            android:id="@+id/btn_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="SIGN IN"
+            android:background="@drawable/rounded_button"
+            android:textColor="#4B0082"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="16sp"
+            android:textAllCaps="true"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:id="@+id/tv_or_continue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Igraj kao gost" />
+            android:text="Or continue with:"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btn_guest"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="GUEST"
+            android:background="@drawable/rounded_button"
+            android:textColor="#4B0082"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/tv_not_registered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not registered yet?"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp" />
 
         <Button
             android:id="@+id/btn_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Registracija novog igrača" />
-
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prijava igrača" />
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Register now"
+            android:background="@drawable/rounded_button"
+            android:textColor="#4B0082"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="16sp"
+            android:textAllCaps="true" />
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

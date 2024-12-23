@@ -1,136 +1,201 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#4B0082">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="#4B0082"
         android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tv_category_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Odabir kategorije"
-        android:textSize="30sp"
-        android:textColor="#FFFF00"
-        android:layout_marginBottom="20dp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/button_all_categories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Odabir svih kategorija"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="20dp"
-        android:padding="12dp" />
-
-    <GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="5"
-        android:layout_marginBottom="20dp">
-
-        <Button
-            android:id="@+id/button_movies"
+        <TextView
+            android:id="@+id/tv_app_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Filmovi"
-            android:layout_margin="8dp"
+            android:text="QUIZIFY"
+            android:textSize="80sp"
+            android:fontFamily="sans-serif-black"
+            android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:padding="10dp" />
+            android:layout_marginBottom="50dp" />
 
-        <Button
-            android:id="@+id/button_games"
+        <TextView
+            android:id="@+id/tv_quiz_configuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Igrice"
-            android:layout_margin="8dp"
+            android:text="Quiz Configuration"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif"
             android:textColor="#FFFFFF"
-            android:padding="10dp" />
+            android:layout_marginBottom="24dp" />
 
         <Button
-            android:id="@+id/button_history"
+            android:id="@+id/button_all_categories"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/rounded_button"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="ALL CATEGORIES"
+            android:textColor="#000000" />
+
+        <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Povijest"
-            android:layout_margin="8dp"
-            android:textColor="#FFFFFF"
-            android:padding="10dp" />
+            android:columnCount="2"
+            android:rowCount="5"
+            android:layout_marginTop="8dp"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/button_geography"
-            android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/button_movies"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="FILM"
+                android:background="@drawable/rounded_button"
+                android:textColor="#000000"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_games"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="GAMES"
+                android:background="@drawable/rounded_button"
+                android:textColor="#000000"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_history"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="HISTORY"
+                android:background="@drawable/rounded_button"
+                android:textColor="#000000"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_geography"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="GEOGRAPHY"
+                android:background="@drawable/rounded_button"
+                android:textColor="#000000"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_music"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="MUSIC"
+                android:background="@drawable/rounded_button"
+                android:textColor="#000000"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_physics"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="PHYSICS"
+                android:background="@drawable/rounded_button"
+                android:textColor="#000000"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_biology"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="BIOLOGY"
+                android:background="@drawable/rounded_button"
+                android:textColor="#000000"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_cars"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="CARS"
+                android:background="@drawable/rounded_button"
+                android:textColor="#000000"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_sport"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="SPORT"
+                android:background="@drawable/rounded_button"
+                android:textColor="#000000"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/button_it"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="IT"
+                android:background="@drawable/rounded_button"
+                android:textColor="#000000"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="10dp" />
+        </GridLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Geografija"
-            android:layout_margin="8dp"
-            android:textColor="#FFFFFF"
-            android:padding="10dp" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/black">
 
-        <Button
-            android:id="@+id/button_music"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Glazba"
-            android:layout_margin="8dp"
-            android:textColor="#FFFFFF"
-            android:padding="10dp" />
+            <ImageView
+                android:id="@+id/btn_play"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_play"
+                android:layout_marginRight="80dp"/>
 
-        <Button
-            android:id="@+id/button_physics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fizika"
-            android:layout_margin="8dp"
-            android:textColor="#FFFFFF"
-            android:padding="10dp" />
+            <ImageView
+                android:id="@+id/btn_leaderboard"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_leaderboard"
+                android:layout_marginRight="80dp"/>
 
-        <Button
-            android:id="@+id/button_biology"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Biologija"
-            android:layout_margin="8dp"
-            android:textColor="#FFFFFF"
-            android:padding="10dp" />
+            <ImageView
+                android:id="@+id/btn_profile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_profile" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/button_cars"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Auti"
-            android:layout_margin="8dp"
-            android:textColor="#FFFFFF"
-            android:padding="10dp" />
-
-        <Button
-            android:id="@+id/button_sport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sport"
-            android:layout_margin="8dp"
-            android:textColor="#FFFFFF"
-            android:padding="10dp" />
-
-        <Button
-            android:id="@+id/button_it"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="IT"
-            android:layout_margin="8dp"
-            android:textColor="#FFFFFF"
-            android:padding="10dp" />
-
-    </GridLayout>
-
-</LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

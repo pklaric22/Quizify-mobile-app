@@ -11,7 +11,6 @@
         android:padding="24dp"
         android:background="#4B0082">
 
-        <!-- Username Field -->
         <EditText
             android:id="@+id/et_login_username"
             android:layout_width="match_parent"
@@ -23,7 +22,6 @@
             android:textColorHint="#808080"
             android:layout_marginBottom="16dp" />
 
-        <!-- Password Field -->
         <EditText
             android:id="@+id/et_login_password"
             android:layout_width="match_parent"
@@ -36,7 +34,6 @@
             android:textColorHint="#808080"
             android:layout_marginBottom="24dp" />
 
-        <!-- Login Button -->
         <Button
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
