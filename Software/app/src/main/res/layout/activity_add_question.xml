@@ -1,0 +1,112 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="#4B0082">
+
+        <TextView
+            android:id="@+id/tv_app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QUIZIFY"
+            android:textSize="80sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            android:textColor="#00FFFF"
+            android:layout_marginBottom="32dp" />
+
+        <EditText
+            android:id="@+id/et_question"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Enter your question"
+            android:background="@drawable/rounded_edittext"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"
+            android:inputType="textMultiLine" />
+
+        <EditText
+            android:id="@+id/et_correct_answer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Correct answer"
+            android:background="@drawable/rounded_edittext"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_wrong_answer1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Wrong answer 1"
+            android:background="@drawable/rounded_edittext"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_wrong_answer2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Wrong answer 2"
+            android:background="@drawable/rounded_edittext"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_wrong_answer3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Wrong answer 3"
+            android:background="@drawable/rounded_edittext"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"
+            android:inputType="text" />
+
+        <Spinner
+            android:id="@+id/spinner_difficulty"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_spinner"
+            android:padding="12dp"
+            android:layout_marginBottom="20dp" />
+
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_spinner"
+            android:padding="12dp"
+            android:layout_marginBottom="20dp" />
+
+        <Button
+            android:id="@+id/btn_save_question"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Save Question"
+            android:background="@drawable/rounded_button"
+            android:padding="12dp"
+            android:textColor="#4B0082"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="16sp"
+            android:textAllCaps="true" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
