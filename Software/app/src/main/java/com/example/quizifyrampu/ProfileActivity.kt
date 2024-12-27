@@ -23,6 +23,8 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var btnHome: ImageView
     private lateinit var btnProfile: ImageView
     private lateinit var btnExit: ImageView
+    private lateinit var backButton: ImageView
+
 
     private val client = OkHttpClient()
     private var userId: Int = -1
@@ -40,6 +42,7 @@ class ProfileActivity : AppCompatActivity() {
         btnHome = findViewById(R.id.btn_home)
         btnProfile = findViewById(R.id.btn_profile)
         btnExit = findViewById(R.id.btn_exit)
+        backButton = findViewById(R.id.btn_back)
 
         val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
         userId = sharedPreferences.getInt("user_id", -1)
@@ -59,6 +62,12 @@ class ProfileActivity : AppCompatActivity() {
             logoutUser()
         }
 
+        backButton.setOnClickListener {
+            finish()
+        }
+
+        btnExit.setOnClickListener { finishAffinity() }
+
         btnHome.setOnClickListener {
             val intent = Intent(this, GameModeActivity::class.java)
             startActivity(intent)
@@ -66,13 +75,14 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         btnProfile.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnExit.setOnClickListener {
-            finishAffinity() // Zatvara sve aktivnosti
-            System.exit(0) // Osigurava završetak aplikacije
+            val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+            val userId = sharedPreferences.getInt("user_id", -1)
+            if (userId == -1) {
+                Toast.makeText(this, "You are not signed in!", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         val btnAddQuestion: Button = findViewById(R.id.btn_add_question)
