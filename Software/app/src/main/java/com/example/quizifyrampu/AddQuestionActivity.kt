@@ -1,5 +1,7 @@
 package com.example.quizifyrampu
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
@@ -22,12 +24,16 @@ class AddQuestionActivity : AppCompatActivity() {
     private lateinit var spinnerCategory: Spinner
     private lateinit var spinnerDifficulty: Spinner
     private lateinit var btnSaveQuestion: Button
+    private lateinit var btnBack: ImageView
+    private lateinit var btnHome: ImageView
+    private lateinit var btnProfile: ImageView
+    private lateinit var btnExit: ImageView
 
     private val client = OkHttpClient()
 
     private val categories = listOf(
         "Movies", "Geography", "History", "Games", "Music",
-        "Fizics", "Biology", "General", "Sport", "IT"
+        "Physics", "Biology", "General", "Sport", "IT"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +48,10 @@ class AddQuestionActivity : AppCompatActivity() {
         spinnerCategory = findViewById(R.id.spinner_category)
         spinnerDifficulty = findViewById(R.id.spinner_difficulty)
         btnSaveQuestion = findViewById(R.id.btn_save_question)
+        btnBack = findViewById(R.id.btn_back)
+        btnHome = findViewById(R.id.btn_home)
+        btnProfile = findViewById(R.id.btn_profile)
+        btnExit = findViewById(R.id.btn_exit)
 
         val difficultyOptions = arrayOf("easy", "medium", "hard")
         val difficultyAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, difficultyOptions)
@@ -53,7 +63,11 @@ class AddQuestionActivity : AppCompatActivity() {
         spinnerCategory.adapter = categoryAdapter
 
         btnSaveQuestion.setOnClickListener {
-            saveQuestionToServer()
+            if (areFieldsValid()) {
+                saveQuestionToServer()
+            } else {
+                Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         val textView = findViewById<TextView>(R.id.tv_app_title)
@@ -69,6 +83,41 @@ class AddQuestionActivity : AppCompatActivity() {
         )
         textView.paint.shader = shader
         textView.setShadowLayer(8f, 4f, 4f, Color.YELLOW)
+
+        btnBack.setOnClickListener {
+            finish()
+        }
+
+        btnHome.setOnClickListener {
+            val intent = Intent(this, GameModeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        btnProfile.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+            val userId = sharedPreferences.getInt("user_id", -1)
+            if (userId == -1) {
+                Toast.makeText(this, "Niste prijavljeni!", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        btnExit.setOnClickListener {
+            finishAffinity()
+        }
+    }
+
+    private fun areFieldsValid(): Boolean {
+        return etQuestion.text.isNotEmpty() &&
+                etCorrectAnswer.text.isNotEmpty() &&
+                etWrongAnswer1.text.isNotEmpty() &&
+                etWrongAnswer2.text.isNotEmpty() &&
+                etWrongAnswer3.text.isNotEmpty() &&
+                spinnerCategory.selectedItem != null &&
+                spinnerDifficulty.selectedItem != null
     }
 
     private fun saveQuestionToServer() {
@@ -119,7 +168,7 @@ class AddQuestionActivity : AppCompatActivity() {
             "HISTORY" -> 3
             "GAMES" -> 4
             "MUSIC" -> 5
-            "FIZICS" -> 6
+            "PHYSICS" -> 6
             "BIOLOGY" -> 7
             "GENERAL" -> 8
             "SPORT" -> 9

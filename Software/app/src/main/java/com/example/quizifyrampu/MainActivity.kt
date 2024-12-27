@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -26,6 +25,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Provjera automatske prijave
+        if (isUserLoggedIn()) {
+            val intent = Intent(this, GameModeActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+
         setContentView(R.layout.activity_main)
 
         val playAsGuestButton: Button = findViewById(R.id.btn_guest)
@@ -127,6 +135,7 @@ class MainActivity : AppCompatActivity() {
         val editor = sharedPreferences.edit()
         editor.putInt("user_id", userId)
         editor.putString("ime_prezime", imePrezime)
+        editor.putBoolean("is_logged_in", true) // Sprema da je korisnik prijavljen
         editor.apply()
     }
 
@@ -137,58 +146,8 @@ class MainActivity : AppCompatActivity() {
         editor.apply()
     }
 
-    private fun checkStatisticsAndOpenActivity() {
-        val userId = getSharedPreferences("user_session", Context.MODE_PRIVATE).getInt("user_id", -1)
-
-        if (userId == -1) {
-            Toast.makeText(this, "Niste prijavljeni", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val credentials = Credentials.basic("aplikatori", "nA7:B&")
-        val request = Request.Builder()
-            .url("http://157.230.8.219/quizify/get_user_statistics.php?user_id=$userId")
-            .addHeader("Authorization", credentials)
-            .get()
-            .build()
-
-        OkHttpClient().newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                runOnUiThread {
-                    Toast.makeText(this@MainActivity, "Greška: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                val responseBody = response.body?.string()
-                if (response.isSuccessful && responseBody != null) {
-                    try {
-                        val jsonObject = JSONObject(responseBody)
-                        val jsonArray = jsonObject.optJSONArray("data")
-
-                        if (jsonArray == null || jsonArray.length() == 0) {
-                            // Ako nema podataka
-                            runOnUiThread {
-                                Toast.makeText(this@MainActivity, "Nema dostupne statistike za prikaz.", Toast.LENGTH_SHORT).show()
-                            }
-                        } else {
-                            // Ako podaci postoje, otvori aktivnost
-                            runOnUiThread {
-                                val intent = Intent(this@MainActivity, StatisticsActivity::class.java)
-                                startActivity(intent)
-                            }
-                        }
-                    } catch (e: Exception) {
-                        runOnUiThread {
-                            Toast.makeText(this@MainActivity, "Greška u obradi podataka", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                } else {
-                    runOnUiThread {
-                        Toast.makeText(this@MainActivity, "Greška u dohvatu podataka: HTTP ${response.code}", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        })
+    private fun isUserLoggedIn(): Boolean {
+        val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("is_logged_in", false)
     }
 }

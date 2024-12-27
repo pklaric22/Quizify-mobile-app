@@ -37,8 +37,6 @@
 
         <activity android:name=".RegisterActivity" />
 
-        <activity android:name=".LoginActivity_staro" />
-
         <activity android:name=".AddQuestionActivity" />
 
         <activity android:name=".StatisticsActivity" />

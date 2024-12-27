@@ -24,7 +24,7 @@
         android:id="@+id/tv_welcome_guest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Game modes"
+        android:text="Options"
         android:textSize="40sp"
         android:textStyle="bold"
         android:fontFamily="sans-serif-black"
@@ -82,7 +82,7 @@
             android:id="@+id/btnStatistics"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="ACHIEVEMENTS"
+            android:text="STATISTICS"
             android:background="@drawable/rounded_button"
             android:textColor="#4B0082"
             android:fontFamily="sans-serif-medium"
@@ -90,7 +90,9 @@
 
     </LinearLayout>
 
+    <!-- Navigacijska traka -->
     <LinearLayout
+        android:id="@+id/navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -98,18 +100,18 @@
         android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="16dp">
 
-        <!-- Exit Button -->
+        <!-- Back Button -->
         <ImageView
-            android:id="@+id/btn_exit"
+            android:id="@+id/btn_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_exit"
-            android:layout_marginStart="16dp"
-            android:layout_gravity="start" />
+            android:src="@drawable/ic_back"
+            android:background="@drawable/button_selector"/>
 
-        <!-- Spacer to push home button to center -->
+        <!-- Spacer -->
         <View
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -120,9 +122,10 @@
             android:id="@+id/btn_home"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_home" />
+            android:src="@drawable/ic_home"
+            android:background="@drawable/button_selector"/>
 
-        <!-- Spacer to push profile button to end -->
+        <!-- Spacer -->
         <View
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -134,8 +137,21 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_profile"
-            android:layout_marginEnd="16dp"
-            android:layout_gravity="end" />
+            android:background="@drawable/button_selector"/>
 
+        <!-- Spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+
+        <!-- Exit Button -->
+        <ImageView
+            android:id="@+id/btn_exit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_exit"
+            android:background="@drawable/button_selector"/>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

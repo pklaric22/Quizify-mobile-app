@@ -19,6 +19,10 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var btnEditProfile: Button
+    private lateinit var btnLogout: Button
+    private lateinit var btnHome: ImageView
+    private lateinit var btnProfile: ImageView
+    private lateinit var btnExit: ImageView
 
     private val client = OkHttpClient()
     private var userId: Int = -1
@@ -32,6 +36,10 @@ class ProfileActivity : AppCompatActivity() {
         etEmail = findViewById(R.id.et_email_profile)
         etPassword = findViewById(R.id.et_password_profile)
         btnEditProfile = findViewById(R.id.btn_edit_profile)
+        btnLogout = findViewById(R.id.btn_logout)
+        btnHome = findViewById(R.id.btn_home)
+        btnProfile = findViewById(R.id.btn_profile)
+        btnExit = findViewById(R.id.btn_exit)
 
         val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
         userId = sharedPreferences.getInt("user_id", -1)
@@ -47,8 +55,27 @@ class ProfileActivity : AppCompatActivity() {
             updateUserProfile(userId)
         }
 
-        val btnAddQuestion: Button = findViewById(R.id.btn_add_question)
+        btnLogout.setOnClickListener {
+            logoutUser()
+        }
 
+        btnHome.setOnClickListener {
+            val intent = Intent(this, GameModeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        btnProfile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnExit.setOnClickListener {
+            finishAffinity() // Zatvara sve aktivnosti
+            System.exit(0) // Osigurava završetak aplikacije
+        }
+
+        val btnAddQuestion: Button = findViewById(R.id.btn_add_question)
         btnAddQuestion.setOnClickListener {
             val intent = Intent(this, AddQuestionActivity::class.java)
             startActivity(intent)
@@ -154,4 +181,11 @@ class ProfileActivity : AppCompatActivity() {
         })
     }
 
+    private fun logoutUser() {
+        val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }
