@@ -114,7 +114,7 @@ class GameModeActivity : AppCompatActivity() {
 
                         if (jsonArray == null || jsonArray.length() == 0) {
                             runOnUiThread {
-                                Toast.makeText(this@GameModeActivity, "Nema dostupne statistike za prikaz.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@GameModeActivity, "No available statistics", Toast.LENGTH_SHORT).show()
                             }
                         } else {
                             runOnUiThread {

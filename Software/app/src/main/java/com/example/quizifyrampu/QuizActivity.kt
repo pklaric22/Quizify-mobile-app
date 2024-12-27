@@ -10,6 +10,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,10 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var btnAnswer2: Button
     private lateinit var btnAnswer3: Button
     private lateinit var btnAnswer4: Button
+    private lateinit var backButton: ImageView
+    private lateinit var btnExit: ImageView
+    private lateinit var btnHome: ImageView
+    private lateinit var btnProfile: ImageView
 
     private val client = OkHttpClient()
     private var questions: List<Question> = emptyList()
@@ -48,6 +53,33 @@ class QuizActivity : AppCompatActivity() {
         btnAnswer2 = findViewById(R.id.btn_answer2)
         btnAnswer3 = findViewById(R.id.btn_answer3)
         btnAnswer4 = findViewById(R.id.btn_answer4)
+        btnExit = findViewById(R.id.btn_exit)
+        btnHome = findViewById(R.id.btn_home)
+        btnProfile = findViewById(R.id.btn_profile)
+        backButton = findViewById(R.id.btn_back)
+
+        backButton.setOnClickListener {
+            finish()
+        }
+
+        btnExit.setOnClickListener { finishAffinity() }
+
+        btnHome.setOnClickListener {
+            val intent = Intent(this, GameModeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        btnProfile.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+            val userId = sharedPreferences.getInt("user_id", -1)
+            if (userId == -1) {
+                Toast.makeText(this, "You are not signed in!", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
         val tvCategory = findViewById<TextView>(R.id.tv_category)
         val category = intent.getStringExtra("category") ?: "General Knowledge"
@@ -77,12 +109,15 @@ class QuizActivity : AppCompatActivity() {
         textView.setShadowLayer(8f, 4f, 4f, Color.YELLOW)
     }
 
+
+
     private fun setButtonClickListeners() {
         btnAnswer1.setOnClickListener { checkAnswer(btnAnswer1.text.toString()) }
         btnAnswer2.setOnClickListener { checkAnswer(btnAnswer2.text.toString()) }
         btnAnswer3.setOnClickListener { checkAnswer(btnAnswer3.text.toString()) }
         btnAnswer4.setOnClickListener { checkAnswer(btnAnswer4.text.toString()) }
     }
+
 
     private fun fetchQuestions(category: String, difficulty: String) {
         val combinedQuestions = mutableListOf<Question>()

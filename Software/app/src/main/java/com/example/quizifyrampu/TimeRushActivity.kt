@@ -1,14 +1,17 @@
 package com.example.quizifyrampu
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
 import org.json.JSONObject
@@ -24,6 +27,10 @@ class TimeRushActivity : AppCompatActivity() {
     private lateinit var btnAnswer3: Button
     private lateinit var btnAnswer4: Button
     private lateinit var progressTimer: ProgressBar
+    private lateinit var backButton: ImageView
+    private lateinit var btnExit: ImageView
+    private lateinit var btnHome: ImageView
+    private lateinit var btnProfile: ImageView
 
     private val client = OkHttpClient()
     private var questions: List<QuizActivity.Question> = emptyList()
@@ -43,6 +50,34 @@ class TimeRushActivity : AppCompatActivity() {
         btnAnswer3 = findViewById(R.id.btn_answer3)
         btnAnswer4 = findViewById(R.id.btn_answer4)
         progressTimer = findViewById(R.id.progress_timer)
+        btnExit = findViewById(R.id.btn_exit)
+        btnHome = findViewById(R.id.btn_home)
+        btnProfile = findViewById(R.id.btn_profile)
+        backButton = findViewById(R.id.btn_back)
+
+        backButton.setOnClickListener {
+            finish()
+        }
+
+        btnExit.setOnClickListener { finishAffinity() }
+
+        btnHome.setOnClickListener {
+            val intent = Intent(this, GameModeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        btnProfile.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+            val userId = sharedPreferences.getInt("user_id", -1)
+            if (userId == -1) {
+                Toast.makeText(this, "You are not signed in!", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
 
         val category = intent.getStringExtra("category") ?: "9"
         val difficulty = intent.getStringExtra("difficulty") ?: "easy"
