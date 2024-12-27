@@ -1,6 +1,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#4B0082">
 
     <LinearLayout
@@ -102,6 +103,25 @@
             android:textAllCaps="true"
             android:textColor="#4B0082"
             android:textSize="16sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="16dp">
+
+        <ImageView
+            android:id="@+id/btn_exit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_exit"
+            android:background="@drawable/button_selector"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

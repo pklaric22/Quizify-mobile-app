@@ -8,6 +8,7 @@ import android.graphics.Shader
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -21,12 +22,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var etUsername: EditText
     private lateinit var etPassword: EditText
+    private lateinit var exitButton: ImageView
     private val client = OkHttpClient()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Provjera automatske prijave
         if (isUserLoggedIn()) {
             val intent = Intent(this, GameModeActivity::class.java)
             startActivity(intent)
@@ -39,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         val playAsGuestButton: Button = findViewById(R.id.btn_guest)
         val registerButton: Button = findViewById(R.id.btn_register)
         val loginButton: Button = findViewById(R.id.btn_sign_in)
+        exitButton = findViewById(R.id.btn_exit)
         etUsername = findViewById(R.id.et_username_login)
         etPassword = findViewById(R.id.et_password_login)
 
@@ -68,6 +72,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         loginButton.setOnClickListener { loginUser() }
+        exitButton.setOnClickListener {
+            finishAffinity()
+        }
     }
 
     private fun loginUser() {

@@ -28,6 +28,7 @@ class CategorySelectionActivity : AppCompatActivity() {
     private lateinit var btnCars: Button
     private lateinit var btnSport: Button
     private lateinit var btnIT: Button
+    private lateinit var backButton: ImageView
 
     private var gameMode: String? = null
 
@@ -39,6 +40,7 @@ class CategorySelectionActivity : AppCompatActivity() {
         btnExit = findViewById(R.id.btn_exit)
         btnHome = findViewById(R.id.btn_home)
         btnProfile = findViewById(R.id.btn_profile)
+        backButton = findViewById(R.id.btn_back)
 
         // Inicijalizacija gumba za kategorije
         btnAllCategories = findViewById(R.id.button_all_categories)
@@ -55,13 +57,16 @@ class CategorySelectionActivity : AppCompatActivity() {
 
         gameMode = intent.getStringExtra("gameMode")
 
-        // Postavljanje funkcionalnosti gumba navigacijske trake
+        backButton.setOnClickListener {
+            finish()
+        }
+
         btnExit.setOnClickListener { finishAffinity() } // Izlaz iz aplikacije
 
         btnHome.setOnClickListener {
             val intent = Intent(this, GameModeActivity::class.java)
             startActivity(intent)
-            finish() // Završavanje trenutne aktivnosti
+            finish()
         }
 
         btnProfile.setOnClickListener {
@@ -75,7 +80,6 @@ class CategorySelectionActivity : AppCompatActivity() {
             }
         }
 
-        // Postavljanje funkcionalnosti gumba za kategorije
         btnAllCategories.setOnClickListener { startDifficultySelection("General") }
         btnMovies.setOnClickListener { startDifficultySelection("Movies") }
         btnGames.setOnClickListener { startDifficultySelection("Games") }

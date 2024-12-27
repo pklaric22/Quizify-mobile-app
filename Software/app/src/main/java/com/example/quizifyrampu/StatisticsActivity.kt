@@ -1,8 +1,10 @@
 package com.example.quizifyrampu
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import android.widget.TextView
@@ -22,20 +24,52 @@ class StatisticsActivity : AppCompatActivity() {
     private var userId: Int = -1
     private lateinit var listView: ListView
     private lateinit var pieChart: PieChart
+    private lateinit var backButton: ImageView
+    private lateinit var btnExit: ImageView
+    private lateinit var btnHome: ImageView
+    private lateinit var btnProfile: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
 
+        btnExit = findViewById(R.id.btn_exit)
+        btnHome = findViewById(R.id.btn_home)
+        btnProfile = findViewById(R.id.btn_profile)
+        backButton = findViewById(R.id.btn_back)
+
         listView = findViewById(R.id.lv_statistics)
         pieChart = findViewById(R.id.pieChart)
+
+        backButton.setOnClickListener {
+            finish()
+        }
+
+        btnExit.setOnClickListener { finishAffinity() }
+
+        btnHome.setOnClickListener {
+            val intent = Intent(this, GameModeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        btnProfile.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+            val userId = sharedPreferences.getInt("user_id", -1)
+            if (userId == -1) {
+                Toast.makeText(this, "You are not signed in!", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
         val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
         userId = sharedPreferences.getInt("user_id", -1)
 
 
         if (userId == -1) {
-            Toast.makeText(this, "Niste prijavljeni. Nemoguće prikazati statistiku.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Not signed in. Unable to show statistics", Toast.LENGTH_LONG).show()
             finish()
         } else {
             fetchStatistics()
@@ -72,7 +106,7 @@ class StatisticsActivity : AppCompatActivity() {
                         if (jsonArray == null || jsonArray.length() == 0) {
                             // Ako nema podataka o statistici
                             runOnUiThread {
-                                Toast.makeText(this@StatisticsActivity, "Nema dostupne statistike za ovog igrača.", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@StatisticsActivity, "No available statistics for this user", Toast.LENGTH_LONG).show()
                                 finish() // Zatvaranje aktivnosti
                             }
                             return
@@ -186,7 +220,7 @@ class StatisticsActivity : AppCompatActivity() {
     private fun setupPieChart(pieEntries: List<PieEntry>) {
         val summaryTextView: TextView = findViewById(R.id.tvSummary)
 
-        summaryTextView.text = "Statistika po kategoriji: ${pieEntries.size} kategorije"
+        summaryTextView.text = "Statistics by category: ${pieEntries.size} categories"
 
         val dataSet = PieDataSet(pieEntries,"")
         dataSet.colors = ColorTemplate.COLORFUL_COLORS.toList()
@@ -196,7 +230,7 @@ class StatisticsActivity : AppCompatActivity() {
 
         pieChart.data = pieData
         pieChart.description.isEnabled = false
-        pieChart.centerText = "Točni odgovori (%)"
+        pieChart.centerText = "Correct answers (%)"
         pieChart.setEntryLabelTextSize(12f)
         pieChart.animateY(1000)
         pieChart.invalidate()
