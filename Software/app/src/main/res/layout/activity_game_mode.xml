@@ -90,7 +90,6 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,27 +100,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Exit Button -->
         <ImageView
-            android:id="@+id/btn_play"
+            android:id="@+id/btn_exit"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_play"
-            android:layout_marginEnd="80dp" />
-
-        <ImageView
-            android:id="@+id/btn_leaderboard"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_leaderboard"
+            android:src="@drawable/ic_exit"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="80dp" />
+            android:layout_gravity="start" />
 
+        <!-- Spacer to push home button to center -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+
+        <!-- Home Button -->
+        <ImageView
+            android:id="@+id/btn_home"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_home" />
+
+        <!-- Spacer to push profile button to end -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+
+        <!-- Profile Button -->
         <ImageView
             android:id="@+id/btn_profile"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_profile" />
+            android:src="@drawable/ic_profile"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="end" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

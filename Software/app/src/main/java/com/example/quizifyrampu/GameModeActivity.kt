@@ -11,14 +11,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Credentials
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
-import okio.IOException
+import okhttp3.*
 import org.json.JSONObject
+import java.io.IOException
 
 class GameModeActivity : AppCompatActivity() {
 
@@ -27,47 +22,60 @@ class GameModeActivity : AppCompatActivity() {
     private lateinit var btnStatistics: Button
     private lateinit var btnAddQuestion: Button
     private lateinit var profileButton: ImageView
+    private lateinit var exitButton: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_mode)
 
-        btnClassic = findViewById(R.id.btnClassic)
-        btnTimeRush = findViewById(R.id.btnTimeRush)
-        btnAddQuestion = findViewById(R.id.btnAddQuestion)
-        btnStatistics = findViewById(R.id.btnStatistics)
-        profileButton = findViewById(R.id.btn_profile)
+        // Inicijalizacija UI elemenata
+        try {
+            btnClassic = findViewById(R.id.btnClassic)
+            btnTimeRush = findViewById(R.id.btnTimeRush)
+            btnAddQuestion = findViewById(R.id.btnAddQuestion)
+            btnStatistics = findViewById(R.id.btnStatistics)
+            profileButton = findViewById(R.id.btn_profile)
+            exitButton = findViewById(R.id.btn_exit)
 
-        btnClassic.setOnClickListener { startCategorySelection("classic") }
-        btnTimeRush.setOnClickListener { startCategorySelection("timeRush") }
+            btnClassic.setOnClickListener { startCategorySelection("classic") }
+            btnTimeRush.setOnClickListener { startCategorySelection("timeRush") }
 
-        btnAddQuestion.setOnClickListener {
-            val intent = Intent(this, AddQuestionActivity::class.java)
-            startActivity(intent)
+            btnAddQuestion.setOnClickListener {
+                val intent = Intent(this, AddQuestionActivity::class.java)
+                startActivity(intent)
+            }
+
+            btnStatistics.setOnClickListener {
+                checkStatisticsAndOpenActivity()
+            }
+
+            profileButton.setOnClickListener {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
+            }
+
+            exitButton.setOnClickListener {
+                finishAffinity()
+            }
+
+            // Setovanje gradienta na naslov
+            val textView = findViewById<TextView>(R.id.tv_app_title)
+            val shader = LinearGradient(
+                0f, 0f, 0f, textView.textSize * 1.5f,
+                intArrayOf(
+                    Color.parseColor("#00FFFF"),
+                    Color.parseColor("#4B0082"),
+                    Color.parseColor("#FFFF00")
+                ),
+                null,
+                Shader.TileMode.CLAMP
+            )
+            textView.paint.shader = shader
+            textView.setShadowLayer(8f, 4f, 4f, Color.YELLOW)
+
+        } catch (e: Exception) {
+            Toast.makeText(this, "Greška u inicijalizaciji: ${e.message}", Toast.LENGTH_SHORT).show()
         }
-
-        btnStatistics.setOnClickListener {
-            checkStatisticsAndOpenActivity()
-        }
-
-        profileButton.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
-        }
-
-        val textView = findViewById<TextView>(R.id.tv_app_title)
-        val shader = LinearGradient(
-            0f, 0f, 0f, textView.textSize * 1.5f,
-            intArrayOf(
-                Color.parseColor("#00FFFF"),
-                Color.parseColor("#4B0082"),
-                Color.parseColor("#FFFF00")
-            ),
-            null,
-            Shader.TileMode.CLAMP
-        )
-        textView.paint.shader = shader
-        textView.setShadowLayer(8f, 4f, 4f, Color.YELLOW)
     }
 
     private fun startCategorySelection(gameMode: String) {
