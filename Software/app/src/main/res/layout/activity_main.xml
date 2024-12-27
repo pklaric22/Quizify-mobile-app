@@ -14,103 +14,94 @@
             android:id="@+id/tv_app_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="QUIZIFY"
-            android:textSize="80sp"
-            android:fontFamily="sans-serif-black"
-            android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_marginBottom="32dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/naslov"
             android:textColor="#FFFFFF"
-            />
-
-        <TextView
-            android:id="@+id/tv_sign_in_now"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign in now"
-            android:textSize="18sp"
-            android:fontFamily="sans-serif"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="16dp" />
+            android:textSize="80sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/et_username_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Korisnicko ime"
+            android:hint="@string/username"
             android:background="@drawable/rounded_edittext"
             android:padding="14dp"
             android:textColor="#000000"
             android:textSize="16sp"
             android:layout_marginBottom="12dp"
-            android:inputType="text" />
+            android:inputType="text"
+            android:autofillHints="username"/>
 
         <EditText
             android:id="@+id/et_password_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Lozinka"
+            android:hint="@string/password"
             android:background="@drawable/rounded_edittext"
             android:padding="14dp"
             android:textColor="#000000"
             android:textSize="16sp"
             android:layout_marginBottom="16dp"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:autofillHints="password"/>
 
         <Button
             android:id="@+id/btn_sign_in"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="SIGN IN"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/rounded_button"
-            android:textColor="#4B0082"
             android:fontFamily="sans-serif-medium"
-            android:textSize="16sp"
+            android:text="@string/sign_in"
             android:textAllCaps="true"
-            android:layout_marginBottom="24dp" />
+            android:textColor="#4B0082"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_or_continue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Or continue with:"
-            android:textSize="14sp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="sans-serif"
+            android:text="@string/continue_as"
             android:textColor="#FFFFFF"
-            android:layout_marginBottom="16dp" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btn_guest"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="GUEST"
-            android:background="@drawable/rounded_button"
-            android:textColor="#4B0082"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="16sp"
             android:layout_marginBottom="24dp"
-            android:textAllCaps="true" />
+            android:background="@drawable/rounded_button"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/gost"
+            android:textAllCaps="true"
+            android:textColor="#4B0082"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_not_registered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Not registered yet?"
-            android:textSize="14sp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif"
+            android:text="@string/without_profile"
             android:textColor="#FFFFFF"
-            android:layout_marginBottom="8dp" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Register now"
             android:background="@drawable/rounded_button"
-            android:textColor="#4B0082"
             android:fontFamily="sans-serif-medium"
-            android:textSize="16sp"
-            android:textAllCaps="true" />
+            android:text="@string/register"
+            android:textAllCaps="true"
+            android:textColor="#4B0082"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

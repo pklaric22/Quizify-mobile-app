@@ -1,5 +1,8 @@
 package com.example.quizifyrampu
 
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -52,6 +55,20 @@ class AddQuestionActivity : AppCompatActivity() {
         btnSaveQuestion.setOnClickListener {
             saveQuestionToServer()
         }
+
+        val textView = findViewById<TextView>(R.id.tv_app_title)
+        val shader = LinearGradient(
+            0f, 0f, 0f, textView.textSize * 1.5f,
+            intArrayOf(
+                Color.parseColor("#00FFFF"),
+                Color.parseColor("#4B0082"),
+                Color.parseColor("#FFFF00")
+            ),
+            null,
+            Shader.TileMode.CLAMP
+        )
+        textView.paint.shader = shader
+        textView.setShadowLayer(8f, 4f, 4f, Color.YELLOW)
     }
 
     private fun saveQuestionToServer() {
