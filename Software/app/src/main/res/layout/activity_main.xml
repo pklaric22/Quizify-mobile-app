@@ -27,7 +27,7 @@
             android:id="@+id/et_username_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="@string/username"
+            android:hint="Username:"
             android:background="@drawable/rounded_edittext"
             android:padding="14dp"
             android:textColor="#000000"
@@ -40,7 +40,7 @@
             android:id="@+id/et_password_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="@string/password"
+            android:hint="Password"
             android:background="@drawable/rounded_edittext"
             android:padding="14dp"
             android:textColor="#000000"
@@ -56,7 +56,7 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/rounded_button"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/sign_in"
+            android:text="SIGN IN"
             android:textAllCaps="true"
             android:textColor="#4B0082"
             android:textSize="16sp" />
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="sans-serif"
-            android:text="@string/continue_as"
+            android:text="Or continue as:"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
@@ -78,7 +78,7 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/rounded_button"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/gost"
+            android:text="GUEST"
             android:textAllCaps="true"
             android:textColor="#4B0082"
             android:textSize="16sp" />
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif"
-            android:text="@string/without_profile"
+            android:text="No profile?"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
@@ -99,7 +99,7 @@
             android:layout_height="50dp"
             android:background="@drawable/rounded_button"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/register"
+            android:text="REGISTRATION"
             android:textAllCaps="true"
             android:textColor="#4B0082"
             android:textSize="16sp" />

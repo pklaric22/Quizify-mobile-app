@@ -431,13 +431,51 @@ class QuizActivity : AppCompatActivity() {
             return
         }
 
-        val category = intent.getStringExtra("category") ?: "General Knowledge"
-        submitResults(userId, category, correctAnswers, totalQuestions, firstQuestion)
+        val json = JSONObject().apply {
+            put("user_id", userId)
+            put("score", score)
+        }
+
+        val mediaType = "application/json; charset=utf-8".toMediaType()
+        val body = json.toString().toRequestBody(mediaType)
+        val credentials = Credentials.basic("aplikatori", "nA7:B&")
+
+        val request = Request.Builder()
+            .url("http://157.230.8.219/quizify/update_score.php")
+            .addHeader("Authorization", credentials)
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("QuizActivity", "Failed to update score: ${e.message}")
+                runOnUiThread {
+                    Toast.makeText(this@QuizActivity, "Error updating score", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (!response.isSuccessful) {
+                    Log.e("QuizActivity", "Failed to update score: HTTP ${response.code}")
+                    runOnUiThread {
+                        Toast.makeText(this@QuizActivity, "Server error updating score", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Log.d("QuizActivity", "Score successfully updated")
+                    runOnUiThread {
+                        Toast.makeText(this@QuizActivity, "Score saved!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
 
         val intent = Intent(this, GameModeActivity::class.java)
         startActivity(intent)
         finish()
     }
+
+
+
 
     private fun submitResults(
         userId: Int, category: String, correctAnswers: Int,
@@ -471,6 +509,5 @@ class QuizActivity : AppCompatActivity() {
             }
         })
     }
-
     data class Question(val text: String, val correctAnswer: String, val answers: List<String>)
 }

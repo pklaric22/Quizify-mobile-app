@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
 import org.json.JSONArray
+import org.json.JSONObject
 import java.io.IOException
 
 class LeaderboardActivity : AppCompatActivity() {
@@ -54,7 +55,13 @@ class LeaderboardActivity : AppCompatActivity() {
 
     private fun fetchLeaderboardData() {
         val url = "http://157.230.8.219/quizify/get_leaderboard.php"
-        val request = Request.Builder().url(url).get().build()
+        val credentials = Credentials.basic("aplikatori", "nA7:B&")
+
+        val request = Request.Builder()
+            .url(url)
+            .addHeader("Authorization", credentials)
+            .get()
+            .build()
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -81,14 +88,28 @@ class LeaderboardActivity : AppCompatActivity() {
                 }
 
                 try {
-                    val jsonArray = JSONArray(responseBody)
+                    val jsonObject = JSONObject(responseBody)
+                    val status = jsonObject.optString("status", "error")
+
+                    if (status != "success") {
+                        runOnUiThread {
+                            Toast.makeText(
+                                this@LeaderboardActivity,
+                                "Failed to fetch leaderboard data",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        return
+                    }
+
+                    val leaderboardArray = jsonObject.getJSONArray("data")
                     val leaderboardData = mutableListOf<String>()
 
-                    for (i in 0 until jsonArray.length()) {
-                        val player = jsonArray.getJSONObject(i)
-                        val name = player.optString("name", "Unknown")
+                    for (i in 0 until leaderboardArray.length()) {
+                        val player = leaderboardArray.getJSONObject(i)
+                        val username = player.optString("username", "Unknown")
                         val score = player.optInt("score", 0)
-                        leaderboardData.add("${i + 1}. $name - $score points")
+                        leaderboardData.add("${i + 1}. $username - $score points")
                     }
 
                     runOnUiThread {
@@ -111,4 +132,5 @@ class LeaderboardActivity : AppCompatActivity() {
             }
         })
     }
+
 }
