@@ -198,16 +198,17 @@ class TimeRushActivity : AppCompatActivity() {
         val correctAnswer = questions[currentQuestionIndex].correctAnswer
 
         if (selectedAnswer == correctAnswer) {
-            score += 10
+            score += 100
             selectedButton.setBackgroundResource(R.drawable.answer_correct)
         } else {
-            score = maxOf(0, score - 10)
+            score = maxOf(0, score - 100) // Ensure score does not drop below 0
             selectedButton.setBackgroundResource(R.drawable.answer_incorrect)
             highlightCorrectAnswer(correctAnswer)
         }
 
         updateScoreView()
 
+        // Move to the next question
         currentQuestionIndex++
 
         Handler(mainLooper).postDelayed({
@@ -215,11 +216,11 @@ class TimeRushActivity : AppCompatActivity() {
             if (currentQuestionIndex < questions.size) {
                 updateUI(questions[currentQuestionIndex])
             } else {
-                currentQuestionIndex = 0
-                updateUI(questions[currentQuestionIndex])
+                endGame() // End the game if all questions are answered
             }
         }, 1000)
     }
+
 
     private fun resetButtonBackgrounds() {
         btnAnswer1.setBackgroundResource(R.drawable.button_with_border)
@@ -251,11 +252,20 @@ class TimeRushActivity : AppCompatActivity() {
 
     private fun endGame() {
         countDownTimer.cancel()
+
+        // Prikaz poruke o završetku igre i rezultata
+        Toast.makeText(
+            this,
+            "Game Over! Your score: $score",
+            Toast.LENGTH_LONG
+        ).show()
+
         val intent = Intent(this, GameModeActivity::class.java)
         intent.putExtra("score", score)
         startActivity(intent)
         finish()
     }
+
 
     private fun decodeHtml(html: String): String {
         return html.replace("&quot;", "\"")
