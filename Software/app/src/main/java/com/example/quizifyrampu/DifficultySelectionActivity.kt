@@ -83,9 +83,9 @@ class DifficultySelectionActivity : AppCompatActivity() {
         val shader = LinearGradient(
             0f, 0f, 0f, textView.textSize * 1.5f,
             intArrayOf(
-                Color.parseColor("#00FFFF"),
-                Color.parseColor("#4B0082"),
-                Color.parseColor("#FFFF00")
+                Color.parseColor("#FFD700"),
+                Color.parseColor("#FF8C00"),
+                Color.parseColor("#FF4500")
             ),
             null,
             Shader.TileMode.CLAMP

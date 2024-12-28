@@ -1,10 +1,14 @@
 package com.example.quizifyrampu
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
@@ -31,6 +35,21 @@ class LeaderboardActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        val textView = findViewById<TextView>(R.id.tv_leaderboard_title)
+        val shader = LinearGradient(
+            0f, 0f, 0f, textView.textSize * 1.5f,
+            intArrayOf(
+                Color.parseColor("#FFD700"),
+                Color.parseColor("#FF8C00"),
+                Color.parseColor("#FF4500")
+            ),
+            null,
+            Shader.TileMode.CLAMP
+        )
+
+        textView.paint.shader = shader
+        textView.setShadowLayer(8f, 4f, 4f, Color.YELLOW)
     }
 
     private fun fetchLeaderboardData() {
