@@ -24,6 +24,7 @@ class GameModeActivity : AppCompatActivity() {
     private lateinit var profileButton: ImageView
     private lateinit var exitButton: ImageView
     private lateinit var backButton: ImageView
+    private lateinit var btnLeaderboard: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,12 @@ class GameModeActivity : AppCompatActivity() {
         profileButton = findViewById(R.id.btn_profile)
         exitButton = findViewById(R.id.btn_exit)
         backButton = findViewById(R.id.btn_back)
+        btnLeaderboard = findViewById(R.id.btnLeaderboard)
+
+        btnLeaderboard.setOnClickListener{
+            val intent = Intent(this, LeaderboardActivity::class.java)
+            startActivity(intent)
+        }
 
         backButton.setOnClickListener {
             finish()
