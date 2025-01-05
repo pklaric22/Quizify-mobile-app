@@ -6,10 +6,8 @@ import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +23,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var etUsername: EditText
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
-    private lateinit var spinnerUserType: Spinner
     private lateinit var btnRegister: Button
 
     private val client = OkHttpClient()
@@ -38,13 +35,7 @@ class RegisterActivity : AppCompatActivity() {
         etUsername = findViewById(R.id.et_username)
         etEmail = findViewById(R.id.et_email)
         etPassword = findViewById(R.id.et_password)
-        spinnerUserType = findViewById(R.id.spinner_user_type)
         btnRegister = findViewById(R.id.btn_register)
-
-        val userTypes = listOf("Običan korisnik" to 1, "Admin" to 2)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, userTypes.map { it.first })
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerUserType.adapter = adapter
 
         btnRegister.setOnClickListener { registerUser() }
 
@@ -70,7 +61,7 @@ class RegisterActivity : AppCompatActivity() {
         val username = etUsername.text.toString()
         val email = etEmail.text.toString()
         val password = etPassword.text.toString()
-        val userTypeId = (spinnerUserType.selectedItemPosition + 1)
+        val userTypeId = 1 // Korisnički tip je uvijek "Običan korisnik"
 
         if (!validateInputFields(firstName, username, email, password)) {
             return
