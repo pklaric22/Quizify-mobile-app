@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var btnRegister: Button
+    private lateinit var btnExit: ImageView
 
     private val client = OkHttpClient()
 
@@ -36,8 +38,15 @@ class RegisterActivity : AppCompatActivity() {
         etEmail = findViewById(R.id.et_email)
         etPassword = findViewById(R.id.et_password)
         btnRegister = findViewById(R.id.btn_register)
+        btnExit = findViewById(R.id.btn_exit)
 
         btnRegister.setOnClickListener { registerUser() }
+
+        btnExit.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val textView = findViewById<TextView>(R.id.tv_app_title)
         val shader = LinearGradient(
