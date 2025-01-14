@@ -1,31 +1,28 @@
 # Quizify
 
-## Projektni tim
+## Project Team
 
-Ime i prezime | E-mail adresa (FOI) | JMBAG | Github korisničko ime | Seminarska grupa
-------------  | ------------------- | ----- | --------------------- | ----------------
-Andrej Pavešić |apavesic22@student.foi.hr | 0016158653 | apavesic22 | G02
-Karlo Mišić | kmisic22@student.foi.hr | 0016158466 | kmisic22 | G01
-Patrik Klarić | pklaric22@student.foi.hr | 0016158515 | pklaric22 | G01
+Name and Surname | Email Address (FOI) | JMBAG | GitHub Username 
+----------------  | ------------------- | ----- | ---------------
+Patrik Klarić | pklaric22@student.foi.hr | 0016158515 | pklaric22
 
-## Opis domene
-Quizify je aplikacija za ljubitelje kvizova, osmišljena da korisnicima pruži zabavno i izazovno iskustvo kroz raznovrsne trivije i testove znanja. Platforma pokriva širok spektar tema uključujući geografiju, književnost, povijest, glazbu, kulturu, jezike, znanost i brojne druge te omogućava korisnicima da testiraju svoje znanje, natječu se sa prijateljima ili sa globalnom zajednicom, i otkrivaju nove zanimljivosti. Quizify se ističe po tome što igrač može birati kategorije (osim ako želi "izmiješana" pitanja) na koje će odgovarati i podešavati težinu pitanja, a osim toga može dodati svoje poznanike i prijatelje kao i steći nova prijateljstva prilikom nadmetanja u znanju. Quizify prati napredak svakog igrača na način da igrač skuplja poene sa svojim točnim odgovorima koji se zapisuju u njegov osobni igrački profil. Osim što služi za zabavu Quizify pruža mogućnost stjecanja novih znanja i kvizaških iskustava, a može služiti i kao vrsta pripreme za puno ozbiljnije kvizove koji se odigravaju u stvarnom svijetu u obliku kvizaških liga i kupova. Također omogućava više načina igranja odnosno njegovi se igrači mogu natjecati u brzini davanja točnih odgovora u načinu igre koji je ograničen zadanim timerom ili se mogu natjecati u klasičnom načinu igre gdje se odgovara na zadani broj pitanja bez vremenskog ograničenja a uspješnost igrača ovisi o količini točnih odgovora.
-## Specifikacija projekta
+## Domain Description
+Quizify is an application for quiz enthusiasts, designed to provide users with a fun and challenging experience through diverse trivia and knowledge tests. The platform covers a wide range of topics, including geography, literature, history, music, culture, languages, science, and many more. It enables users to test their knowledge, compete with friends or the global community, and discover new facts. Quizify stands out by allowing players to choose the categories they wish to answer (unless they opt for "mixed" questions) and adjust the difficulty of the questions. Additionally, users can add their acquaintances and friends, as well as make new friendships through knowledge competitions. Quizify tracks each player's progress by awarding points for correct answers, which are recorded in their personal player profile. Besides entertainment, Quizify provides an opportunity to gain new knowledge and quiz experiences, serving as a form of preparation for more serious quizzes conducted in real-life quiz leagues and tournaments. The application also offers various game modes: players can compete in speed-based modes where they must answer questions within a set timer or opt for the classic mode where they answer a predefined number of questions without time restrictions, with success depending on the number of correct answers.
 
-Oznaka | Naziv | Kratki opis | Odgovorni član tima
------- | ----- | ----------- | -------------------
-F01 | Registracija i prijava | Quizify će korisnicima omogućiti registraciju sa svojim korisničkim podacima ako im je to prvi put da koriste aplikaciju odnosno moći će se prijaviti ako su već ranije koristili aplikaciju. | Andrej Pavešić
-F02 | Mogućnost ručnog unosa pitanja u bazu | Korisnik će imati mogućnost dodavanja pitanja po vlastitom izboru za željenu kategoriju. | Karlo Mišić
-F03 | Kreiranje kviza | Quizify će imati mogućnost kreiranja kviza tako da ga kreira prema kategorijama pitanja, načinu igre i težini. Moći će kreirati kviz prema nasumično odabranim kategorijama ili kategorijama koje korisnik odabere prema svojim željama i isto tako će ih moći kreirati prema težini (lako, srednje, teško). | Patrik Klarić
-F04 | Praćenje uspjeha igrača | Aplikacija će imati implementiran sistem iskustvenih bodova. Funkcionalnost će omogućiti pregled: Ukupnog poretka igrač u odnosu na ostale, Ukupan broj ostvarenih iskustvenih bodova, Povijest odigranih kvizova s prikazom točnih i netočnih odgovora, Grafikone bodovnog rasta tijekom vremena.| Andrej Pavešić
-F05 | Prikaz tablice uspješnosti | Unutar aplikacije postojat će mogućnost prikaza tablice s poretkom igrača gdje su igrači poredani prema svojem bodovnom postignuću. Pritom će postojati dvije tablice, jedna gdje će se korisnik moći uspoređivati s ostalim korisnicima koje je označio kao svoje prijatelje, a druga gdje će biti poredani top 10 igrača s najvećim brojem bodova. | Andrej Pavešić
-F06 | Prikaz uspjeha po kategoriji | Korisnik će unutar aplikacije imati prikaz svojeg uspjeha po svakoj kategoriji u aplikaciji. Uz dodatne informacije o pitanju koje je najčešće odgovarano i koliki je postotak igrača odgovorilo na to pitanje točno, prikaz će biti u grafičkom obliku. | Karlo Mišić
-F07 | Pregled povijesti igara | Korisnici će moći pregledati svoju povijest igara, uključujući datume, rezultate i odabrane kategorije. Ova funkcionalnost može pomoći igračima da prate svoj napredak tijekom vremena i analizira svoje uspjehe i neuspjehe. | Patrik Klarić 
-F08 | Nagrade za postignuća | Aplikacija će imati sistem nagrada za postignuća kroz dodjelu iskustvenih bodova (experience points). Igrači će dobivati bodove za različita postignuća, poput točnih odgovora na pitanja, s naglaskom na teža pitanja koja donose više bodova. Pravila dodjele uključuju i gubitak bodova za netočne odgovore, čime će igrači moći pratiti svoj ukupni napredak kroz osvajanje ili gubitak iskustvenih bodova. | Patrik Klarić
-F09 | Kreiranje baze pitanja | Quizify će svoju bazu pitanja povlačiti iz API-ja s linka https://opentdb.com/api.php?amount=10 te će ih koristiti u kreiranju kviza i pitanja za kviz. | Karlo Mišić
+## Project Specification
 
-## Tehnologije i oprema
-Za implementaciju rješenja koristit ćemo programski jezik Kotlin te razvojno okruženje Android Studio. Za korisničko sučelje odlučili smo se za korištenje Jetpack Compose frameworka, koji omogućuje deklarativan pristup kreiranju UI komponenata unutar Android aplikacije. Također, za verzioniranje koda koristit ćemo Git te ćemo cijeli repozitorij hostati na GitHub platformi. Dokumentaciju ćemo voditi putem GitHub Wiki sukladno uputama mentora, a zadatke projekta ćemo planirati i pratiti unutar GitHub Projects. Sve korištene tehnologije su javno dostupne i slobodne za korištenje, čime osiguravamo transparentnost i dostupnost našeg programskog proizvoda.
+ID | Name | Brief Description 
+---|------|-----------------
+F01 | Registration and Login | Quizify will enable users to register with their credentials if they are using the app for the first time or log in if they have already used the app.
+F02 | Manual Question Entry | Users will have the ability to add questions of their choice for a desired category.
+F03 | Quiz Creation | Quizify will allow quizzes to be created based on question categories, game modes, and difficulty levels. Quizzes can be created with randomly selected categories or user-preferred ones, as well as by difficulty level (easy, medium, hard).
+F04 | Player Performance Tracking | The application will include an experience point system. This feature will allow users to view: Overall rankings compared to other players, Total experience points earned, History of played quizzes with correct and incorrect answers, and Score growth charts over time.
+F05 | Leaderboard Display | The application will feature a leaderboard displaying players ranked by their achievements. Two leaderboards will be available: one comparing the user to their friends and another showing the top 10 players with the highest points.
+F06 | Performance by Category | Users will be able to view their performance by category within the app. Additional information, such as the most frequently answered question and the percentage of players who answered it correctly, will be displayed in graphical form.
+F07 | Game History Review | Users can review their game history, including dates, results, and selected categories. This functionality helps players track their progress over time and analyze their successes and failures.
+F08 | Achievement Rewards | The application will include an achievement reward system through experience points. Players will earn points for achievements, such as correct answers to questions, with emphasis on harder questions that yield more points. Rules for point allocation also include point deductions for incorrect answers, allowing players to track their overall progress through point gains or losses.
+F09 | Question Database Creation | Quizify will fetch its question database from the API at https://opentdb.com/api.php?amount=10 and use it for quiz creation and quiz questions.
 
-## Baza podataka i web server
-Tražimo pristup serveru na kojemu ćemo imati bazu podataka.
+## Technologies and Equipment
+For the implementation of the solution, I will use the Kotlin programming language and the Android Studio development environment. For the user interface, I have chosen to use the XML framework. Additionally, we will use Git for version control and host the repository on the GitHub platform. Documentation will be maintained via GitHub Wiki as per the mentor's instructions, and project tasks will be planned and tracked within GitHub Projects. All utilized technologies are publicly available and free to use, ensuring transparency and accessibility of our software product.
+
